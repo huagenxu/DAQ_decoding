@@ -199,11 +199,20 @@ int decoding(int f)
 			  int id = ((buf[n]>>16)&0xff);	//	printf("module_id=%d \n",id);
 			  temp_ID = id;
 			//int evtId=0;
+        if(id>0){
+          if(id==16)evtADC1++;
+          if(id==16)evtADC1++;
+          if(id==16)evtADC1++;
+          if(id==16)evtADC1++;
+          if(id==16)evtADC1++;
+          if(id==16)evtADC1++;
+
+        }
 
 		if(id<22){//Identify ADC data by module ID
 			 id = id - 15;
         for(int i=1;i<=nrwords;i++) {
-		        if(id==1){ evtADC1++;
+		        if(id==1){
                       if((buf[n+i]&0xf4E00000)==0x04000000) {
 				                     int ch= (buf[n+i]>>16) & 0x1F;
             			           data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
@@ -232,7 +241,7 @@ int decoding(int f)
                       } //event end
                       } //ADC1 data
 
-		   else if(id==2){ evtADC2++;
+		   else if(id==2){
                       if((buf[n+i]&0xf4E00000)==0x04000000){
 				                    int ch= (buf[n+i]>>16) & 0x1F;
             			          data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
@@ -257,7 +266,7 @@ int decoding(int f)
 			//	cout<<"evtADC2="<<evtADC2<<endl;
                       } //event end
 			                } // ADC2 data
-		    else if(id==3){ evtADC3++;
+		    else if(id==3){
                       if((buf[n+i]&0xf4E00000)==0x04000000) {
 				                     int ch= (buf[n+i]>>16) & 0x1F;
             			           data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
@@ -284,7 +293,6 @@ int decoding(int f)
                       } //event end
                     } //ADC3 data
 		     else if(id==4){
-                        evtADC4++;
                       if((buf[n+i]&0xf4E00000)==0x04000000){
 				                    int ch= (buf[n+i]>>16) & 0x1F;
             			          data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
@@ -308,7 +316,7 @@ int decoding(int f)
 
 			                } //event end
 			              } //ADC4 data
-		     else if(id==5){ evtADC5++;
+		     else if(id==5){
                       if((buf[n+i]&0xf4E00000)==0x04000000){
 				                    int ch= (buf[n+i]>>16) & 0x1F;
             			          data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
@@ -331,7 +339,7 @@ int decoding(int f)
 
   			                } //event end
 			                } //ADC5 data
-		      else if(id==6){ evtADC6++;
+		      else if(id==6){ 
                       if((buf[n+i]&0xf4E00000)==0x04000000){
 				                    int ch= (buf[n+i]>>16) & 0x1F;
                       			data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
