@@ -215,8 +215,9 @@ int decoding(int f)
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                   //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
 				                     end0 = buf[n+i] &0x3FFFFFFF;
-				                     dt1 = end0 - time_evt_ADC1;
+				                  //   dt1 = end0 - time_evt_ADC1;
 				                     time_evt_ADC1=end0;
+                             dt1 = end0 - time_evt_ADC1;
 			//	cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
 				 cout<<"the ADC1 dt1= "<<dt1<<endl;
 			//	cout<<"id= "<<id<<" dt= "<<dt1*62.5/1000000<<" ms"<<endl;
