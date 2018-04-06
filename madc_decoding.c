@@ -223,7 +223,7 @@ int decoding(int f)
 			//	cout<<"id= "<<id<<" dt= "<<dt1*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
 
-				                     timestampADC1->Fill(dt1);
+				                     timestampADC1->Fill(abs(dt1));
 				                     data2[id][0] = end0;
 
 				                     cldata[evtADC1][id][32]=end0; //timestamp of 1 event
@@ -249,7 +249,7 @@ int decoding(int f)
 				 cout<<"the ADC2 dt2= "<<dt2<<endl;
 			//	 cout<<"id= "<<id<<" dt= "<<dt2*62.5/1000000<<" ms"<<endl;
 			//	 cout<<"The cluster count is            "<<count<<endl;
-				                    timestampADC2->Fill(dt2*62.5/1000000);
+				                    timestampADC2->Fill(abs(dt2));
 				                    data2[id][0] = end0;
 
 				                    cldata[evtADC2][id][32]=end0; //timestamp of 1 event
@@ -275,7 +275,7 @@ int decoding(int f)
 		//		 cout<<"id= "<<id<<" dt= "<<dt3*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
 
-				                     timestampADC3->Fill(dt3*62.5/1000000);
+				                     timestampADC3->Fill(abs(dt3));
 				                     data2[id][0] = end0;
 				                     cldata[evtADC3][id][32]=end0; //timestamp of 1 event
 				                     evtADC3++;
@@ -301,7 +301,7 @@ int decoding(int f)
 				cout<<"the ADC4 dt4= "<<dt4<<endl;
 				///cout<<"id= "<<id<<" dt= "<<dt4*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
-				                    timestampADC4->Fill(dt4*62.5/1000000);
+				                    timestampADC4->Fill(abs(dt4));
 				                    data2[id][0] = end0;
 				                    cldata[evtADC4][id][32]=end0; //timestamp of 1 event
 				                    evtADC4++;
@@ -324,7 +324,7 @@ int decoding(int f)
 				cout<<"the ADC5 dt5= "<<dt5<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt5*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
-				                    timestampADC5->Fill(dt5*62.5/1000000);
+				                    timestampADC5->Fill(abs(dt5));
 				                    data2[id][0] = end0;
 				                    cldata[evtADC5][id][32]=end0; //timestamp of 1 event
 				                    evtADC5++;
@@ -348,7 +348,7 @@ int decoding(int f)
 				cout<<"the ADC6 dt6= "<<dt6<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt6*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
-				                    timestampADC6->Fill(dt6*62.5/1000000);
+				                    timestampADC6->Fill(abs(dt6));
 				                    data2[id][0] = end0;
 
 				                    cldata[evtADC6][id][32]=end0; //timestamp of 1 event
@@ -743,22 +743,22 @@ TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,600,400);
     gPad->SetLogz();
 /*   timestampADC1->SetXTitle("Time (ms)");
    timestampADC1->SetYTitle("Counts");
-
+*/
    timestampADC1->SetLineColor(kBlack);
    timestampADC1->SetLineWidth(3);
    timestampADC1->Draw();
-*/
+
     timestampADC2->SetLineColor(kRed);
     timestampADC2->SetLineWidth(3);
     timestampADC2->Draw();
 
     timestampQDC1->SetLineColor(kBlue);
     timestampQDC1->SetLineWidth(3);
-    timestampQDC1->Draw("same");
+//    timestampQDC1->Draw("same");
 
     timestampTDC1->SetLineColor(kGreen);
     timestampTDC1->SetLineWidth(3);
-    timestampTDC1->Draw("same");
+//    timestampTDC1->Draw("same");
 
 
     float x0=0.6, y0=0.8, x1=0.72, y1=0.9;
@@ -766,8 +766,8 @@ TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,600,400);
     TLegend* leg3 = new TLegend(x0,y0,x1,y1);
     leg3->AddEntry(timestampADC1, "ADC1","L");
     leg3->AddEntry(timestampADC2, "ADC2","L");
-    leg3->AddEntry(timestampQDC1, "QDC1","L");
-    leg3->AddEntry(timestampTDC1, "TDC1","L");
+//    leg3->AddEntry(timestampQDC1, "QDC1","L");
+//    leg3->AddEntry(timestampTDC1, "TDC1","L");
  //   leg3->AddEntry(h_ge1[2], "Strip3","L");
 
 
