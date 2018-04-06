@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <string.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <stdio.h>
 
 #include <TROOT.h>
@@ -33,29 +33,31 @@ Int_t cldata[1000][9][34];
 
 Int_t scaler[33],scaler_temp[33],
       scint[33]={1,2,3,4,5,6,7,8,9,10,
-		 11,12,13,14,15,16,17,18,19,20,21,
-		 22,23,24,25,26,27,28,29,30,31,32,
-		 33},
+		             11,12,13,14,15,16,17,18,19,20,
+                 21,22,23,24,25,26,27,28,29,30,
+                 31,32,33},
       scal_ch[33] ={ 1, 2, 3, 4, 5, 6, 7, 8, 9,10,
-		     11,12,13,14,15,16,17,18,19,20,
-		     21,22,23,24,25,26,27,28,29,30,
-		     31,32,33};
-Int_t si13[48],si15[64],ge5[32],ge11[32],qscint[14],tscint[14],rear[4],scalertt[32];
-const int nrch = 33;
-Int_t DADC1[nrch],DADC2[nrch],DADC3[nrch],DADC4[nrch],DADC5[nrch],DADC6[nrch],DQDC1[nrch],DTDC1[nrch];
-Int_t clevent=0;
-int count = 0;
+		                 11,12,13,14,15,16,17,18,19,20,
+		                 21,22,23,24,25,26,27,28,29,30,
+		                 31,32,33};
+  Int_t si13[48],si15[64],ge5[32],ge11[32],qscint[14],tscint[14],rear[4],scalertt[32];
+  const int nrch = 33;
+  Int_t DADC1[nrch],DADC2[nrch],DADC3[nrch],DADC4[nrch],DADC5[nrch],DADC6[nrch],DQDC1[nrch],DTDC1[nrch];
+  Int_t clevent=0;
+  Int_t count = 0;
 
-	float madc_offset[7][34];
-	float madc_gain[7][34];
-	float madc_factor[7][34];
+	Float_t madc_offset[7][34];
+	Float_t madc_gain[7][34];
+	Float_t madc_factor[7][34];
 
 	TTree *day1data=new TTree("day1data","detector strips");
 	TTree *rawdata=new TTree("rawdata","channels");
 
+  TMapFile *mfile;
+
 //   TH2S *hits = new TH2S("HitsOnStrip","Spectrum on each strip",70,0.,70., 8192,0.,8192.);
 	double mean[67];
-	int hit[67]={0,0,0,0,0};
+	Int_t hit[67]={0,0,0,0,0};
 	Int_t strip[67]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
                      20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,
                      37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,
@@ -83,13 +85,13 @@ int count = 0;
 	Int_t Ge_11mm_strip[33]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
                      20,21,22,23,24,25,26,27,28,29,30,31,32,33};
 
-	Int_t nbinsx_madc = 8192, 
-	      nbinsx_mqdc = 4096, 
-	      nbinsx_mtdc = 4096, 
+	Int_t nbinsx_madc = 8192,
+	      nbinsx_mqdc = 4096,
+	      nbinsx_mtdc = 4096,
 	      nbinsx_v785 = 4096;
-	Int_t xlow_madc = 0, xup_madc = 8192, 
-	      xlow_mqdc = 0, xup_mqdc = 4096, 
-	      xlow_mtdc = 0, xup_mtdc = 75536, 
+	Int_t xlow_madc = 0, xup_madc = 8192,
+	      xlow_mqdc = 0, xup_mqdc = 4096,
+	      xlow_mtdc = 0, xup_mtdc = 75536,
 	      xlow_v785 = 0, xup_v785 = 4096;
 
     	Int_t nbinsx_si13 = 5000;
@@ -112,19 +114,19 @@ int count = 0;
         h_ADC4[j] = new TH1F(Form("ADC4#%d",j+1),Form("Si2_Strip%02d",j+32),nbinsx_madc, xlow_madc, xup_madc);
         h_ADC5[j] = new TH1F(Form("ADC5#%d",j+1),Form("Ge1_Strip%02d",j+1),nbinsx_madc, xlow_madc, xup_madc);
         h_ADC6[j] = new TH1F(Form("ADC6#%d",j+1),Form("Ge2_Strip%02d",j+1),nbinsx_madc, xlow_madc, xup_madc);
-		
+
 	}
 */
 
 
-TH1F *timestampADC1 = new TH1F("TimeStampADC1","TS_ADC1",10000,0,62.5);
-TH1F *timestampADC2 = new TH1F("TimeStampADC2","TS_ADC2",10000,0,62.5);
-TH1F *timestampADC3 = new TH1F("TimeStampADC3","TS_ADC3",10000,0,62.5);
-TH1F *timestampADC4 = new TH1F("TimeStampADC4","TS_ADC4",10000,0,62.5);
-TH1F *timestampADC5 = new TH1F("TimeStampADC5","TS_ADC5",10000,0,62.5);
-TH1F *timestampADC6 = new TH1F("TimeStampADC6","TS_ADC5",10000,0,62.5);
-TH1F *timestampQDC1 = new TH1F("TimeStampQDC1","TS_QDC1",10000,0,62.5);
-TH1F *timestampTDC1 = new TH1F("TimeStampTDC1","TS_TDC1",10000,0,62.5);
+   TH1F *timestampADC1 = new TH1F("TimeStampADC1","TS_ADC1",10000,0,62.5);
+   TH1F *timestampADC2 = new TH1F("TimeStampADC2","TS_ADC2",10000,0,62.5);
+   TH1F *timestampADC3 = new TH1F("TimeStampADC3","TS_ADC3",10000,0,62.5);
+   TH1F *timestampADC4 = new TH1F("TimeStampADC4","TS_ADC4",10000,0,62.5);
+   TH1F *timestampADC5 = new TH1F("TimeStampADC5","TS_ADC5",10000,0,62.5);
+   TH1F *timestampADC6 = new TH1F("TimeStampADC6","TS_ADC5",10000,0,62.5);
+   TH1F *timestampQDC1 = new TH1F("TimeStampQDC1","TS_QDC1",10000,0,62.5);
+   TH1F *timestampTDC1 = new TH1F("TimeStampTDC1","TS_TDC1",10000,0,62.5);
 
    TH1F *h101 = new TH1F("ADC1_ch1","Si_13_Strip1",nbinsx_madc, xlow_madc, xup_madc);
    TH1F *h102 = new TH1F("ADC1_ch2","Si_13_Strip2",nbinsx_madc, xlow_madc, xup_madc);
@@ -406,10 +408,3 @@ TH1F *timestampTDC1 = new TH1F("TimeStampTDC1","TS_TDC1",10000,0,62.5);
 
 	TH2S *Scint_qhits = new TH2S("ScintillatorsQ","Scint_QDC",33,0,33,1024,0,4096);
 	TH2S *Scint_thits = new TH2S("ScintillatorsT","Scint_TDC",33,0,33,4096,0,75536);
-
-
-	TMapFile *mfile;
-
-
-
-

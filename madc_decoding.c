@@ -103,7 +103,6 @@ void hist_writing(){
 //function of decoding()
 /*****************************************************************************************************/
 
-
 int decoding(int f)
 {
     //   printf("In decoding(): Start decoding!\n");
@@ -115,7 +114,6 @@ int decoding(int f)
 	const int endiantest = 0x12345678;
 	//const int endiantest Source_72K_IRQ_simple_TrigHand_2015_Sep_22_16_50_08.cl= 0x78563412;
 
-
 	if((res=read(f,buf,4*2))!=4*2)
 	{	printf("buffer[0]=%d, buffer[1]=%d\n",buf[0],buf[1]);
 		printf("In decoding(): read size: res=%d, error=%s\n", res, strerror(errno));
@@ -124,11 +122,11 @@ int decoding(int f)
 
 	if (buf[1]==endiantest)
 	{
-	size=buf[0]; //cout<<"The size of cluster is "<<size<<endl;
-	if(size<8) return 1;
-	// if(size>=8) printf("the size of cluster is %d \n",size);
+	   size=buf[0]; //cout<<"The size of cluster is "<<size<<endl;
+	   if(size<8) return 1;
+	    // if(size>=8) printf("the size of cluster is %d \n",size);
 	} else 	{
-	printf("In decoding(): cluster endian (buffer[1]) is not 0x12345678!\n");
+	   printf("In decoding(): cluster endian (buffer[1]) is not 0x12345678!\n");
 	}
 
 
@@ -143,6 +141,7 @@ int decoding(int f)
 	 read(f,buf+2,(size-1)*4);
 	// printf("read(f,buf+2,(size-1)*4)\n");
 
+/*
 	if (buf[2]!=0)
 	{
 		printf("buf[2]!=0 \n");
@@ -150,7 +149,7 @@ int decoding(int f)
 	} else {
 		//	printf("The buf[2] ==0\n");
 	}
-
+*/
 
 //loop one cluster data with datasize of "size"
 
@@ -177,12 +176,13 @@ int decoding(int f)
 	int evtADC1=0, evtADC2=0,evtADC3=0, evtADC4=0, evtADC5=0, evtADC6=0, evtQDC1=0, evtTDC1=0;
 	int end0=0, dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8;
 
+  //loop the cluster data with size
 	for (int n=0;n<size+1;n++)
 	{
-
-		for(int k=0;k<30;k++){
+		for(int k=0;k<30;k++)
+    {
           //	printf(" Buf [%d] is 0x%08x \n", k, buf[k]);
-		}
+	  }
 
 
 /**********************************************************************
@@ -200,9 +200,8 @@ int decoding(int f)
 			  temp_ID = id;
 			//int evtId=0;
 
-
 		if(id<22){//Identify ADC data by module ID
-			   id = id - 15;
+			 id = id - 15;
         for(int i=1;i<=nrwords;i++) {
 		        if(id==1){
                       if((buf[n+i]&0xf4E00000)==0x04000000) {
