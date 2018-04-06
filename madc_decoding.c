@@ -223,7 +223,7 @@ int decoding(int f)
 			//	cout<<"id= "<<id<<" dt= "<<dt1*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
 
-				                     timestampADC1->Fill(abs(dt1));
+				                     timestampADC1->Fill(abs(dt1)+100);
 				                     data2[id][0] = end0;
 
 				                     cldata[evtADC1][id][32]=end0; //timestamp of 1 event
@@ -750,7 +750,23 @@ TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,600,400);
 
     timestampADC2->SetLineColor(kRed);
     timestampADC2->SetLineWidth(3);
-    timestampADC2->Draw();
+    timestampADC2->Draw("same");
+
+    timestampADC3->SetLineColor(kBlue);
+    timestampADC3->SetLineWidth(3);
+    timestampADC3->Draw("same");
+
+     timestampADC4->SetLineColor(kGreen);
+     timestampADC4->SetLineWidth(3);
+     timestampADC4->Draw("same");
+
+     timestampADC5->SetLineColor(kPink);
+     timestampADC5->SetLineWidth(3);
+     timestampADC5->Draw("same");
+
+      timestampADC6->SetLineColor(kOrange);
+      timestampADC6->SetLineWidth(3);
+      timestampADC6->Draw("same");
 
     timestampQDC1->SetLineColor(kBlue);
     timestampQDC1->SetLineWidth(3);
