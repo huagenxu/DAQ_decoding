@@ -174,8 +174,6 @@ int decoding(int f)
 	int temp_ID=0, scaler_ID=0;
 
 	int evtADC1=0, evtADC2=0,evtADC3=0, evtADC4=0, evtADC5=0, evtADC6=0, evtQDC1=0, evtTDC1=0;
-  int evtendADC1=0, evtendADC2=0,evtendADC3=0, evtendADC4=0, evtendADC5=0, evtendADC6=0, evtendQDC1=0, evtendTDC1=0;
-
 	int end0=0, dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8;
 
   //loop the cluster data with size
@@ -211,16 +209,6 @@ int decoding(int f)
 
         }
 
-        if((buf[n+nrwords]&0xC0000000)==0xC0000000){
-          printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
-          if(id==16)evtendADC1++;
-          if(id==17)evtendADC2++;
-          if(id==18)evtendADC3++;
-          if(id==19)evtendADC4++;
-          if(id==20)evtendADC5++;
-          if(id==21)evtendADC6++;
-        } else {cout<<"no proper event end for the data"<<endl;}
-
 		if(id<22){//Identify ADC data by module ID
 			 id = id - 15;
         for(int i=1;i<=nrwords;i++) {
@@ -248,7 +236,7 @@ int decoding(int f)
 				                     data2[id][0] = end0;
 
 				                     cldata[evtADC1][id][32]=end0; //timestamp of 1 event
-				                  //   evtADC1++;
+				                     evtADC1++;
 			//	cout<<"evtADC1="<<evtADC1<<endl;d
                       } //event end
                       } //ADC1 data
@@ -274,7 +262,7 @@ int decoding(int f)
 				                    data2[id][0] = end0;
 
 				                    cldata[evtADC2][id][32]=end0; //timestamp of 1 event
-				                  //  evtADC2++;
+				                    evtADC2++;
 			//	cout<<"evtADC2="<<evtADC2<<endl;
                       } //event end
 			                } // ADC2 data
@@ -299,7 +287,7 @@ int decoding(int f)
 				                     timestampADC3->Fill(abs(dt3));
 				                     data2[id][0] = end0;
 				                     cldata[evtADC3][id][32]=end0; //timestamp of 1 event
-				                   //  evtADC3++;
+				                     evtADC3++;
 		//		cout<<"evtADC3="<<evtADC3<<endl;
 
                       } //event end
@@ -324,7 +312,7 @@ int decoding(int f)
 				                    timestampADC4->Fill(abs(dt4));
 				                    data2[id][0] = end0;
 				                    cldata[evtADC4][id][32]=end0; //timestamp of 1 event
-				               //     evtADC4++;
+				                    evtADC4++;
 
 			                } //event end
 			              } //ADC4 data
@@ -347,7 +335,7 @@ int decoding(int f)
 				                    timestampADC5->Fill(abs(dt5));
 				                    data2[id][0] = end0;
 				                    cldata[evtADC5][id][32]=end0; //timestamp of 1 event
-				             //       evtADC5++;
+				                    evtADC5++;
 
   			                } //event end
 			                } //ADC5 data
@@ -372,7 +360,7 @@ int decoding(int f)
 				                    data2[id][0] = end0;
 
 				                    cldata[evtADC6][id][32]=end0; //timestamp of 1 event
-				              //      evtADC6++;
+				                    evtADC6++;
 
 			               } //event end
 			             } else continue;  //module ID
@@ -562,21 +550,7 @@ int decoding(int f)
 
 	   } //loop size
 
-     eventheader->Fill(evtADC1);
-     eventheader->Fill(evtADC2+10);
-     eventheader->Fill(evtADC3+20);
-     eventheader->Fill(evtADC4+30);
-     eventheader->Fill(evtADC5+40);
-     eventheader->Fill(evtADC6+50);
-     eventend->Fill(evtendADC1);
-     eventend->Fill(evtendADC2+10);
-     eventend->Fill(evtendADC3+20);
-     eventend->Fill(evtendADC4+30);
-     eventend->Fill(evtendADC5+40);
-     eventend->Fill(evtendADC6+50);
-
-
-     		cout<<"evtADC1="<<evtADC1<<endl
+		cout<<"evtADC1="<<evtADC1<<endl
 	    <<"evtADC2="<<evtADC2<<endl
 	    <<"evtADC3="<<evtADC3<<endl
       <<"evtADC4="<<evtADC4<<endl
@@ -773,21 +747,6 @@ TCanvas *c71 = new TCanvas("c71","All strips spectrum",80,80,1200,600);
 //				Ge_11mm_hits->GetXaxis()->SetRangeUser(first_madc, last_madc);
 				Ge_11mm_hits->Draw("colz");
 //   printf("Readout  procedure has been done!\n");
-
-Canvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
-   c72->Divide(1,2);
-   c72->cd(1);
-    gPad->SetLogz();
-
-   eventheader->SetLineColor(kBlack);
-   eventheader->SetLineWidth(3);
-   eventheader->Draw();
-
-   c72->cd(2);
-   eventend->SetLineColor(kBlack);
-   eventend->SetLineWidth(3);
-   eventend->Draw();
-
 
 TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,600,400);
    c74->Divide(1,1);

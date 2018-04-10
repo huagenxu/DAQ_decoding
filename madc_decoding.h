@@ -114,9 +114,10 @@ Int_t scaler[33],scaler_temp[33],
         h_ADC4[j] = new TH1F(Form("ADC4#%d",j+1),Form("Si2_Strip%02d",j+32),nbinsx_madc, xlow_madc, xup_madc);
         h_ADC5[j] = new TH1F(Form("ADC5#%d",j+1),Form("Ge1_Strip%02d",j+1),nbinsx_madc, xlow_madc, xup_madc);
         h_ADC6[j] = new TH1F(Form("ADC6#%d",j+1),Form("Ge2_Strip%02d",j+1),nbinsx_madc, xlow_madc, xup_madc);
-
 	}
 */
+   TH1F *eventheader = new TH1F("EvtHead","EH",200,0.,200.);
+   TH1F *eventend = new TH1F("EvtEnd","EE",200,0.,200.);
 
 
    TH1F *timestampADC1 = new TH1F("TimeStampADC1","TS_ADC1",1000,0,8000);
