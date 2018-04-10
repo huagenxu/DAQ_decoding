@@ -774,7 +774,7 @@ TCanvas *c71 = new TCanvas("c71","All strips spectrum",80,80,1200,600);
 				Ge_11mm_hits->Draw("colz");
 //   printf("Readout  procedure has been done!\n");
 
-Canvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
+TCanvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
    c72->Divide(1,2);
    c72->cd(1);
     gPad->SetLogz();
