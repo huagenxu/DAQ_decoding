@@ -240,7 +240,7 @@ int decoding(int f)
 				                     time_evt_ADC1=end0;
                              dt1 = end0 - time_evt_ADC1;
 			//	cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
-				 cout<<"the ADC1 dt1= "<<dt1<<endl;
+	//			 cout<<"the ADC1 dt1= "<<dt1<<endl;
 			//	cout<<"id= "<<id<<" dt= "<<dt1*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
 
@@ -267,7 +267,7 @@ int decoding(int f)
 				                    dt2 = end0 - time_evt_ADC1;
 				                    time_evt_ADC2=end0;
 				//cout<<"time stamp in the EOE of ADC2=  "<<end0<<endl;
-				 cout<<"the ADC2 dt2= "<<dt2<<endl;
+	//			 cout<<"the ADC2 dt2= "<<dt2<<endl;
 			//	 cout<<"id= "<<id<<" dt= "<<dt2*62.5/1000000<<" ms"<<endl;
 			//	 cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC2->Fill(abs(dt2));
@@ -292,7 +292,7 @@ int decoding(int f)
 				                     dt3 = end0 - time_evt_ADC1;
 				                     time_evt_ADC3=end0;
 				//    cout<<"time stamp in the EOE of ADC3=  "<<end0<<endl;
-				 cout<<"the ADC3 dt3= "<<dt3<<endl;
+	//			 cout<<"the ADC3 dt3= "<<dt3<<endl;
 		//		 cout<<"id= "<<id<<" dt= "<<dt3*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
 
@@ -318,7 +318,7 @@ int decoding(int f)
 				                    dt4 = end0 - time_evt_ADC1;
 				                    time_evt_ADC4=end0;
 				//cout<<"time stamp in the EOE of ADC4=  "<<end0<<endl;
-				cout<<"the ADC4 dt4= "<<dt4<<endl;
+	//			cout<<"the ADC4 dt4= "<<dt4<<endl;
 				///cout<<"id= "<<id<<" dt= "<<dt4*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC4->Fill(abs(dt4));
@@ -341,7 +341,7 @@ int decoding(int f)
 				                    dt5 = end0 - time_evt_ADC1;
 				                    time_evt_ADC5=end0;
 				//cout<<"time stamp in the EOE of ADC5=  "<<end0<<endl;
-				cout<<"the ADC5 dt5= "<<dt5<<endl;
+//				cout<<"the ADC5 dt5= "<<dt5<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt5*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC5->Fill(abs(dt5));
@@ -365,7 +365,7 @@ int decoding(int f)
 				                    dt6 = end0 - time_evt_ADC1;
 				                    time_evt_ADC6=end0;
 				//cout<<"time stamp in the EOE of ADC6=  "<<end0<<endl;
-				cout<<"the ADC6 dt6= "<<dt6<<endl;
+	//			cout<<"the ADC6 dt6= "<<dt6<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt6*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC6->Fill(abs(dt6));
