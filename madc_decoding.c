@@ -662,7 +662,7 @@ int openfile(char *file){
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
 		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<2000&&res ==0 );
+	} while (count++<1500&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
@@ -810,7 +810,7 @@ TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,600,400);
      timestampADC4->SetLineWidth(3);
      timestampADC4->Draw("same");
 
-     timestampADC5->SetLineColor(kPink);
+     timestampADC5->SetLineColor(kMagenta);
      timestampADC5->SetLineWidth(3);
      timestampADC5->Draw("same");
 
