@@ -194,11 +194,11 @@ int decoding(int f)
       if((buf[n]&0xFFF00000) == 0x40100000 ||(buf[n]&0xFFF00000) == 0x40200000 || (buf[n]&0xFFF00000) == 0x40300000)
 //0x40000021 => 0x40000022 on Aug.14.2015
 	   {
-			printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
+		//	printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
         int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
 			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
                 //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
-			  int id = ((buf[n]>>16)&0xff);		printf("module_id=%d \n",id);
+			  int id = ((buf[n]>>16)&0xff);	//	printf("module_id=%d \n",id);
 			  temp_ID = id;
 			//int evtId=0;
         if(id>0){
@@ -212,7 +212,7 @@ int decoding(int f)
         }
 
         if((buf[n+nrwords]&0xC0000000)==0xC0000000){
-          printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
+        //  printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
           if(id==16)evtendADC1++;
           if(id==17)evtendADC2++;
           if(id==18)evtendADC3++;
@@ -576,13 +576,11 @@ int decoding(int f)
      eventend->Fill(evtendADC6+50);
 
 
-     		cout<<"evtADC1="<<evtADC1<<endl
-	    <<"evtADC2="<<evtADC2<<endl
-	    <<"evtADC3="<<evtADC3<<endl
-      <<"evtADC4="<<evtADC4<<endl
-      <<"evtADC5="<<evtADC5<<endl
-      <<"evtADC6="<<evtADC6<<endl;
-
+//     		cout<<"evtADC1="<<evtADC1<<endl
+//	    <<"evtADC2="<<evtADC2<<endl
+//	    <<"evtADC3="<<evtADC3<<endl
+//      <<"evtADC5="<<evtADC5<<endl
+//
     return 0;
 }
 
