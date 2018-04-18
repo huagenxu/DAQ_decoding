@@ -116,8 +116,19 @@ Int_t scaler[33],scaler_temp[33],
         h_ADC6[j] = new TH1F(Form("ADC6#%d",j+1),Form("Ge2_Strip%02d",j+1),nbinsx_madc, xlow_madc, xup_madc);
 	}
 */
-   TH1F *eventheader = new TH1F("EvtHead","EH",200,0.,200.);
-   TH1F *eventend = new TH1F("EvtEnd","EE",200,0.,200.);
+   TH1F *eventheader1 = new TH1F("EvtHead1","EH1",200,0.,200.);
+   TH1F *eventheader2 = new TH1F("EvtHead2","EH2",200,0.,200.);
+   TH1F *eventheader3 = new TH1F("EvtHead3","EH3",200,0.,200.);
+   TH1F *eventheader4 = new TH1F("EvtHead4","EH4",200,0.,200.);
+   TH1F *eventheader5 = new TH1F("EvtHead5","EH5",200,0.,200.);
+   TH1F *eventheader6 = new TH1F("EvtHead6","EH6",200,0.,200.);
+   TH1F *eventend1 = new TH1F("EvtEnd1","EE1",200,0.,200.);
+   TH1F *eventend2 = new TH1F("EvtEnd2","EE2",200,0.,200.);
+   TH1F *eventend3 = new TH1F("EvtEnd3","EE3",200,0.,200.);
+   TH1F *eventend4 = new TH1F("EvtEnd4","EE4",200,0.,200.);
+   TH1F *eventend5 = new TH1F("EvtEnd5","EE5",200,0.,200.);
+   TH1F *eventend6 = new TH1F("EvtEnd6","EE6",200,0.,200.);
+
 
 
    TH1F *timestampADC1 = new TH1F("TimeStampADC1","TS_ADC1",1000,0,8000);

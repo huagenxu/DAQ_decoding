@@ -821,18 +821,18 @@ int decoding(int f)
 
 	   } //loop size
 
-     eventheader->Fill(evtADC1); cout<<"Fill the histogram, evtADC1="<<evtADC1<<endl;
-     eventheader->Fill(evtADC2+10);
-     eventheader->Fill(evtADC3+20);
-     eventheader->Fill(evtADC4+30);
-     eventheader->Fill(evtADC5+40);
-     eventheader->Fill(evtADC6+50);
-     eventend->Fill(evtendADC1); cout<<"Fill the histogram, evtendADC1="<<evtendADC1<<endl;
-     eventend->Fill(evtendADC2+10);
-     eventend->Fill(evtendADC3+20);
-     eventend->Fill(evtendADC4+30);
-     eventend->Fill(evtendADC5+40);
-     eventend->Fill(evtendADC6+50);
+     eventheader1->Fill(evtADC1); cout<<"Fill the histogram, evtADC1="<<evtADC1<<endl;
+     eventheader2->Fill(evtADC2+10);
+     eventheader3->Fill(evtADC3+20);
+     eventheader4->Fill(evtADC4+30);
+     eventheader5->Fill(evtADC5+40);
+     eventheader6->Fill(evtADC6+50);
+     eventend1->Fill(evtendADC1); cout<<"Fill the histogram, evtendADC1="<<evtendADC1<<endl;
+     eventend2->Fill(evtendADC2+10);
+     eventend3->Fill(evtendADC3+20);
+     eventend4->Fill(evtendADC4+30);
+     eventend5->Fill(evtendADC5+40);
+     eventend6->Fill(evtendADC6+50);
 
 
 //     		cout<<"evtADC1="<<evtADC1<<endl
@@ -1036,14 +1036,44 @@ TCanvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
    c72->cd(1);
     gPad->SetLogz();
 
-   eventheader->SetLineColor(kBlack);
-   eventheader->SetLineWidth(3);
-   eventheader->Draw();
+   eventheader1->SetLineColor(kBlack);
+   eventheader1->SetLineWidth(3);
+   eventheader1->Draw();
+   eventheader2->SetLineColor(kRed;
+   eventheader2->SetLineWidth(3);
+   eventheader2->Draw("same");
+   eventheader3->SetLineColor(kBlue);
+   eventheader3->SetLineWidth(3);
+   eventheader3->Draw("same");
+   eventheader4->SetLineColor(kMagenta);
+   eventheader4->SetLineWidth(3);
+   eventheader4->Draw("same");
+   eventheader5->SetLineColor(kGreen);
+   eventheader5->SetLineWidth(3);
+   eventheader5->Draw("same");
+   eventheader6->SetLineColor(kOrange);
+   eventheader6->SetLineWidth(3);
+   eventheader6->Draw("same");
 
    c72->cd(2);
-   eventend->SetLineColor(kBlack);
-   eventend->SetLineWidth(3);
-   eventend->Draw();
+   eventend1->SetLineColor(kBlack);
+   eventend1->SetLineWidth(3);
+   eventend1->Draw();
+   eventend2->SetLineColor(kRed);
+   eventend2->SetLineWidth(3);
+   eventend2->Draw("same");
+   eventend3->SetLineColor(kBlue);
+   eventend3->SetLineWidth(3);
+   eventend3->Draw("same");
+   eventend4->SetLineColor(kGreen);
+   eventend4->SetLineWidth(3);
+   eventend4->Draw("same");
+   eventend5->SetLineColor(kMagenta);
+   eventend5->SetLineWidth(3);
+   eventend5->Draw("same");
+   eventend6->SetLineColor(kOrange);
+   eventend6->SetLineWidth(3);
+   eventend6->Draw("same");
 
 
 TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,600,400);
