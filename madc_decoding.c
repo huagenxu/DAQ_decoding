@@ -1039,7 +1039,7 @@ TCanvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
    eventheader1->SetLineColor(kBlack);
    eventheader1->SetLineWidth(3);
    eventheader1->Draw();
-   eventheader2->SetLineColor(kRed;
+   eventheader2->SetLineColor(kRed);
    eventheader2->SetLineWidth(3);
    eventheader2->Draw("same");
    eventheader3->SetLineColor(kBlue);
