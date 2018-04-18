@@ -182,34 +182,35 @@ int decoding(int f)
 	for (int n=0;n<size+1;n++)
 	{
 		for(int k=0;k<30;k++)
-    {
-          //	printf(" Buf [%d] is 0x%08x \n", k, buf[k]);
-	  }
+               {
+                //	printf(" Buf [%d] is 0x%08x \n", k, buf[k]);
+	       }
 
 
 /**********************************************************************
-* MXDC data
+* MXDC data		
 ***********************************************************************/
 
       if((buf[n]&0xFFF00000) == 0x40100000 ||(buf[n]&0xFFF00000) == 0x40200000 || (buf[n]&0xFFF00000) == 0x40300000)
 //0x40000021 => 0x40000022 on Aug.14.2015
 	   {
-		//	printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
-        int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
+			//printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
+                          int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
 			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
                 //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
 			  int id = ((buf[n]>>16)&0xff);	//	printf("module_id=%d \n",id);
 			  temp_ID = id;
 			//int evtId=0;
-        if(id>0){
+  
+      if(id>0){
           if(id==16)evtADC1++;
           if(id==17)evtADC2++;
           if(id==18)evtADC3++;
           if(id==19)evtADC4++;
           if(id==20)evtADC5++;
           if(id==21)evtADC6++;
-
         }
+
 
         if((buf[n+nrwords]&0xC0000000)==0xC0000000){
         //  printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
@@ -219,10 +220,12 @@ int decoding(int f)
           if(id==19)evtendADC4++;
           if(id==20)evtendADC5++;
           if(id==21)evtendADC6++;
+
         } else {cout<<"no proper event end for the data"<<endl;}
 
 		if(id<22){//Identify ADC data by module ID
-			 id = id - 15;
+		 id = id - 15;
+
         for(int i=1;i<=nrwords;i++) {
 		        if(id==1){
                       if((buf[n+i]&0xf4E00000)==0x04000000) {
@@ -445,7 +448,263 @@ int decoding(int f)
 	         n += nrwords;
 		   } else continue;
 
-    }  //ADC QDC TDC data identified by module ID
+   	 }  //ADC QDC TDC data identified by module ID
+	else if((buf[n]&0xFFF00000) == 0x40000000)
+	{
+			//printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
+       			  int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
+			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
+                //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
+			  int id = ((buf[n]>>16)&0xff);	//	printf("module_id=%d \n",id);
+			  temp_ID = id;
+			//int evtId=0;
+
+
+  	    if(id>0){
+          	  if(id==1)evtADC1++;
+     		  if(id==2)evtADC2++;
+                  if(id==3)evtADC3++;
+                  if(id==4)evtADC4++;
+                  if(id==5)evtADC5++;
+                  if(id==6)evtADC6++;
+                 }
+            if((buf[n+nrwords]&0xC0000000)==0xC0000000){
+        //  printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
+
+                  if(id==1)evtendADC1++;
+                  if(id==2)evtendADC2++;
+                  if(id==3)evtendADC3++;
+                  if(id==4)evtendADC4++;
+                  if(id==5)evtendADC5++;
+                  if(id==6)evtendADC6++;
+              } else {cout<<"no proper event end for the data"<<endl;}
+
+		if(id<7){//Identify ADC data by module ID
+			// id = id - 15;
+
+                   for(int i=1;i<=nrwords;i++) {
+		        if(id==1){
+                      if((buf[n+i]&0xf4E00000)==0x04000000) {
+				                     int ch= (buf[n+i]>>16) & 0x1F;
+            			           data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
+ 				                     data1[id][ch] = data0[id][ch];
+
+				                     cldata[evtADC1][id][ch]=data0[id][ch];
+				//cout<<"ADC1["<<id<<"]["<<ch<<"]= "<<data1[1][ch]<<endl;
+
+               	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
+                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+				                     end0 = buf[n+i] &0x3FFFFFFF;
+				                  //   dt1 = end0 - time_evt_ADC1;
+				                     time_evt_ADC1=end0;
+                             dt1 = end0 - time_evt_ADC1;
+			//	cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
+	//			 cout<<"the ADC1 dt1= "<<dt1<<endl;
+			//	cout<<"id= "<<id<<" dt= "<<dt1*62.5/1000000<<" ms"<<endl;
+				// cout<<"The cluster count is            "<<count<<endl;
+
+				                     timestampADC1->Fill(abs(dt1)+100);
+				                     data2[id][0] = end0;
+
+				                     cldata[evtADC1][id][32]=end0; //timestamp of 1 event
+				                  //   evtADC1++;
+			//	cout<<"evtADC1="<<evtADC1<<endl;d
+                      } //event end
+                      } //ADC1 data
+
+		   else if(id==2){
+                      if((buf[n+i]&0xf4E00000)==0x04000000){
+				                    int ch= (buf[n+i]>>16) & 0x1F;
+            			          data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
+ 				                    data1[id][ch] = data0[id][ch];
+
+				                    cldata[evtADC2][id][ch]=data0[id][ch];
+
+               	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
+                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+				                    end0 = buf[n+i] &0x3FFFFFFF;
+				                    dt2 = end0 - time_evt_ADC1;
+				                    time_evt_ADC2=end0;
+				//cout<<"time stamp in the EOE of ADC2=  "<<end0<<endl;
+	//			 cout<<"the ADC2 dt2= "<<dt2<<endl;
+			//	 cout<<"id= "<<id<<" dt= "<<dt2*62.5/1000000<<" ms"<<endl;
+			//	 cout<<"The cluster count is            "<<count<<endl;
+				                    timestampADC2->Fill(abs(dt2));
+				                    data2[id][0] = end0;
+
+				                    cldata[evtADC2][id][32]=end0; //timestamp of 1 event
+				                  //  evtADC2++;
+			//	cout<<"evtADC2="<<evtADC2<<endl;
+                      } //event end
+			                } // ADC2 data
+		    else if(id==3){
+                      if((buf[n+i]&0xf4E00000)==0x04000000) {
+				                     int ch= (buf[n+i]>>16) & 0x1F;
+            			           data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
+ 				                     data1[id][ch] = data0[id][ch];
+
+				                     cldata[evtADC3][id][ch]=data0[id][ch];
+
+               	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
+                 //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+				                     end0 = buf[n+i] &0x3FFFFFFF;
+				                     dt3 = end0 - time_evt_ADC1;
+				                     time_evt_ADC3=end0;
+				//    cout<<"time stamp in the EOE of ADC3=  "<<end0<<endl;
+	//			 cout<<"the ADC3 dt3= "<<dt3<<endl;
+		//		 cout<<"id= "<<id<<" dt= "<<dt3*62.5/1000000<<" ms"<<endl;
+				// cout<<"The cluster count is            "<<count<<endl;
+
+				                     timestampADC3->Fill(abs(dt3));
+				                     data2[id][0] = end0;
+				                     cldata[evtADC3][id][32]=end0; //timestamp of 1 event
+				                   //  evtADC3++;
+		//		cout<<"evtADC3="<<evtADC3<<endl;
+
+                      } //event end
+                    } //ADC3 data
+		     else if(id==4){
+                      if((buf[n+i]&0xf4E00000)==0x04000000){
+				                    int ch= (buf[n+i]>>16) & 0x1F;
+            			          data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
+ 			                      data1[id][ch] = data0[id][ch];
+
+				                    cldata[evtADC4][id][ch]=data0[id][ch];
+
+               	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
+                 //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+				                    end0 = buf[n+i] &0x3FFFFFFF;
+				                    dt4 = end0 - time_evt_ADC1;
+				                    time_evt_ADC4=end0;
+				//cout<<"time stamp in the EOE of ADC4=  "<<end0<<endl;
+	//			cout<<"the ADC4 dt4= "<<dt4<<endl;
+				///cout<<"id= "<<id<<" dt= "<<dt4*62.5/1000000<<" ms"<<endl;
+				//cout<<"The cluster count is            "<<count<<endl;
+				                    timestampADC4->Fill(abs(dt4));
+				                    data2[id][0] = end0;
+				                    cldata[evtADC4][id][32]=end0; //timestamp of 1 event
+				               //     evtADC4++;
+
+			                } //event end
+			              } //ADC4 data
+		     else if(id==5){
+                      if((buf[n+i]&0xf4E00000)==0x04000000){
+				                    int ch= (buf[n+i]>>16) & 0x1F;
+            			          data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
+ 				                    data1[id][ch] = data0[id][ch];
+
+				                    cldata[evtADC5][id][ch]=data0[id][ch];
+               	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
+                 //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+				                    end0 = buf[n+i] &0x3FFFFFFF;
+				                    dt5 = end0 - time_evt_ADC1;
+				                    time_evt_ADC5=end0;
+				//cout<<"time stamp in the EOE of ADC5=  "<<end0<<endl;
+//				cout<<"the ADC5 dt5= "<<dt5<<endl;
+				//cout<<"id= "<<id<<" dt= "<<dt5*62.5/1000000<<" ms"<<endl;
+				//cout<<"The cluster count is            "<<count<<endl;
+				                    timestampADC5->Fill(abs(dt5));
+				                    data2[id][0] = end0;
+				                    cldata[evtADC5][id][32]=end0; //timestamp of 1 event
+				             //       evtADC5++;
+
+  			                } //event end
+			                } //ADC5 data
+		      else if(id==6){
+                      if((buf[n+i]&0xf4E00000)==0x04000000){
+				                    int ch= (buf[n+i]>>16) & 0x1F;
+                      			data0[id][ch] = (buf[n+i]) & 0x1FFF;   // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
+ 				                    data1[id][ch] = data0[id][ch];
+
+				                    cldata[evtADC6][id][ch]=data0[id][ch];
+
+               	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
+                 //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+				                    end0 = buf[n+i] &0x3FFFFFFF;
+				                    dt6 = end0 - time_evt_ADC1;
+				                    time_evt_ADC6=end0;
+				//cout<<"time stamp in the EOE of ADC6=  "<<end0<<endl;
+	//			cout<<"the ADC6 dt6= "<<dt6<<endl;
+				//cout<<"id= "<<id<<" dt= "<<dt6*62.5/1000000<<" ms"<<endl;
+				//cout<<"The cluster count is            "<<count<<endl;
+				                    timestampADC6->Fill(abs(dt6));
+				                    data2[id][0] = end0;
+
+				                    cldata[evtADC6][id][32]=end0; //timestamp of 1 event
+				              //      evtADC6++;
+
+			               } //event end
+			             } else continue;  //module ID
+
+		        } //loop one ADC data (nrwords)
+
+            n += nrwords;
+
+   	    }else if(id==7){//Identify QDC data by module ID
+		 //       id = id - 25;
+
+                for(int i=1;i<=nrwords;i++){
+			               if(id==7){
+			                         if((buf[n+i]&0xf4E00000)==0x04000000){
+			                              int ch= (buf[n+i]>>16) & 0x1F;      //cout<<" ch1 = "<<ch<<endl;
+			                              data1[id][ch] = (buf[n+i]) & 0xFFF;    // cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
+
+			                              cldata[evtQDC1][id][ch]=data1[id][ch];
+
+			                          } else if((buf[n+i]&0xC0000000)==0xC0000000){
+				                            end0 = buf[n+i] &0x3FFFFFFF;
+				                            dt7 = end0 - time_evt_QDC1;
+				                            time_evt_QDC1=end0;
+                                    timestampQDC1->Fill(dt7*62.5/1000000);
+				                            data2[id][0] = end0;
+
+				                            cout<<"id= "<<id<<" dt= "<<dt7*62.5/1000000<<" ms"<<endl;
+
+				                            cldata[evtQDC1][id][32]=end0; //timestamp of 1 event
+				                            evtQDC1++;
+
+				                        }//event end
+
+				                       }else continue;
+		             } //loop one QDC data
+
+	            n += nrwords;
+
+	      }else if(id==8){
+		//	       id = id-40;
+                for(int i=1;i<=nrwords;i++)	{
+			               if(id==8){
+			                    if((buf[n+i]&0xf4C00000)==0x04000000){
+			                         int ch= (buf[n+i]>>16) & 0x1F;  //    cout<<" ch2 = "<<ch<<endl;
+			                         data1[id][ch] = (buf[n+i]) & 0xFFFF;  //   cout<<" buf["<<n+i<<"] is "<<buf[ch]<<" "<<endl;
+		//	printf("data[%d][ %d ] is %d \n",id, ch, data1[id][ch]);
+		//	printf("data[%d][ %d ] is 0x%08x \n",id, ch, buf[n+i]);
+		//	printf("TDC data: the raw data No %d and data are  0x%08x \n",n+i,buf[n+i]);
+
+			                         cldata[evtTDC1][id][ch]=data1[id][ch];
+
+			                     } else if((buf[n+i]&0xC0000000)==0xC0000000){
+			//cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+
+				                       end0 = buf[n+i] &0x3FFFFFFF;
+				                       dt8 = end0 - time_evt_TDC1;
+				                       time_evt_TDC1=end0;
+
+				//cout<<"time stamp in the EOE of TDC is "<<end0<<endl;
+			//	 cout<<"the dt is                       "<<dt<<endl;
+				                      cout<<"id="<<id<<" dt="<<dt8*62.5/1000000<<" ms"<<endl;
+				                       timestampTDC1->Fill(dt8*62.5/1000000);
+				                       data2[id][0] = end0;
+
+				                       cldata[evtTDC1][id][32]=end0; //timestamp of 1 event
+				                       evtTDC1++;
+				                   } //event end
+				               } else continue;
+		             } //loop one ADC data
+	         n += nrwords;
+		   } else continue;
+
+	} //MXDC data with HW module ID
 
 
 /**********************************************************************
@@ -662,7 +921,7 @@ int openfile(char *file){
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
 		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<1284&&res ==0 );
+	} while (count++<12840000&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
