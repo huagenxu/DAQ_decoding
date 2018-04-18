@@ -451,7 +451,7 @@ int decoding(int f)
    	 }  //ADC QDC TDC data identified by module ID
 	else if((buf[n]&0xFFF00000) == 0x40000000)
 	{
-			printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
+		//	printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
        			  int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
 			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
                 //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
@@ -460,7 +460,7 @@ int decoding(int f)
 			//int evtId=0;
 
   	    if(id>0){
-          	      if(id==1){evtADC1++; eventheader1->Fill(10); cout<<"evt head ="<<evtADC1<<endl;}
+          	      if(id==1){evtADC1++; eventheader1->Fill(10); }
      		          if(id==2){evtADC2++; eventheader2->Fill(20);}
                   if(id==3){evtADC3++; eventheader3->Fill(30);}
                   if(id==4){evtADC4++; eventheader4->Fill(40);}
@@ -468,9 +468,9 @@ int decoding(int f)
                   if(id==6){evtADC6++; eventheader6->Fill(60);}
                  }
             if((buf[n+nrwords]&0xC0000000)==0xC0000000){
-          printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
+      //    printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
 
-                  if(id==1){evtendADC1++; eventend1->Fill(10);cout<<"evt end = "<<evtendADC1<<endl;}
+                  if(id==1){evtendADC1++; eventend1->Fill(10);}
                   if(id==2){evtendADC2++; eventend2->Fill(20);}
                   if(id==3){evtendADC3++; eventend3->Fill(30);}
                   if(id==4){evtendADC4++; eventend4->Fill(40);}
@@ -492,7 +492,7 @@ int decoding(int f)
 				//cout<<"ADC1["<<id<<"]["<<ch<<"]= "<<data1[1][ch]<<endl;
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
-                    cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+                //    cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
 				                     end0 = buf[n+i] &0x3FFFFFFF;
 				                  //   dt1 = end0 - time_evt_ADC1;
 				                     time_evt_ADC1=end0;
@@ -919,8 +919,8 @@ int openfile(char *file){
 		} //cluster events
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
-		if(count%1 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<10&&res ==0 );
+		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
+	} while (count++<10000&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
