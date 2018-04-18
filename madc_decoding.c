@@ -188,7 +188,7 @@ int decoding(int f)
 
 
 /**********************************************************************
-* MXDC data		
+* MXDC data
 ***********************************************************************/
 
       if((buf[n]&0xFFF00000) == 0x40100000 ||(buf[n]&0xFFF00000) == 0x40200000 || (buf[n]&0xFFF00000) == 0x40300000)
@@ -201,7 +201,7 @@ int decoding(int f)
 			  int id = ((buf[n]>>16)&0xff);	//	printf("module_id=%d \n",id);
 			  temp_ID = id;
 			//int evtId=0;
-  
+
       if(id>0){
           if(id==16)evtADC1++;
           if(id==17)evtADC2++;
@@ -451,7 +451,7 @@ int decoding(int f)
    	 }  //ADC QDC TDC data identified by module ID
 	else if((buf[n]&0xFFF00000) == 0x40000000)
 	{
-			//printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
+			printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
        			  int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
 			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
                 //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
@@ -461,17 +461,17 @@ int decoding(int f)
 
 
   	    if(id>0){
-          	  if(id==1)evtADC1++;
-     		  if(id==2)evtADC2++;
+          	      if(id==1){evtADC1++; cout<<"evt head ="<<evtADC1<<endl;}
+     		          if(id==2)evtADC2++;
                   if(id==3)evtADC3++;
                   if(id==4)evtADC4++;
                   if(id==5)evtADC5++;
                   if(id==6)evtADC6++;
                  }
             if((buf[n+nrwords]&0xC0000000)==0xC0000000){
-        //  printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
+          printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
 
-                  if(id==1)evtendADC1++;
+                  if(id==1){evtendADC1++; cout<<"evt end = "<<evtendADC1<<endl;}
                   if(id==2)evtendADC2++;
                   if(id==3)evtendADC3++;
                   if(id==4)evtendADC4++;
@@ -493,7 +493,7 @@ int decoding(int f)
 				//cout<<"ADC1["<<id<<"]["<<ch<<"]= "<<data1[1][ch]<<endl;
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
-                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+                    cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
 				                     end0 = buf[n+i] &0x3FFFFFFF;
 				                  //   dt1 = end0 - time_evt_ADC1;
 				                     time_evt_ADC1=end0;
@@ -821,13 +821,13 @@ int decoding(int f)
 
 	   } //loop size
 
-     eventheader->Fill(evtADC1);
+     eventheader->Fill(evtADC1); cout<<"Fill the histogram, evtADC1="<<evtADC1<<endl;
      eventheader->Fill(evtADC2+10);
      eventheader->Fill(evtADC3+20);
      eventheader->Fill(evtADC4+30);
      eventheader->Fill(evtADC5+40);
      eventheader->Fill(evtADC6+50);
-     eventend->Fill(evtendADC1);
+     eventend->Fill(evtendADC1); cout<<"Fill the histogram, evtendADC1="<<evtendADC1<<endl;
      eventend->Fill(evtendADC2+10);
      eventend->Fill(evtendADC3+20);
      eventend->Fill(evtendADC4+30);
@@ -921,7 +921,7 @@ int openfile(char *file){
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
 		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<12840000&&res ==0 );
+	} while (count++<1284&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
