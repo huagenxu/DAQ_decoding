@@ -459,24 +459,23 @@ int decoding(int f)
 			  temp_ID = id;
 			//int evtId=0;
 
-
   	    if(id>0){
-          	      if(id==1){evtADC1++; cout<<"evt head ="<<evtADC1<<endl;}
-     		          if(id==2)evtADC2++;
-                  if(id==3)evtADC3++;
-                  if(id==4)evtADC4++;
-                  if(id==5)evtADC5++;
-                  if(id==6)evtADC6++;
+          	      if(id==1){evtADC1++; eventheader1->Fill(evtADC1); cout<<"evt head ="<<evtADC1<<endl;}
+     		          if(id==2){evtADC2++; eventheader2->Fill(evtADC2+10);}
+                  if(id==3){evtADC3++; eventheader3->Fill(evtADC3+20);}
+                  if(id==4){evtADC4++; eventheader4->Fill(evtADC4+30);}
+                  if(id==5){evtADC5++; eventheader5->Fill(evtADC5+40);}
+                  if(id==6){evtADC6++; eventheader6->Fill(evtADC6+50);}
                  }
             if((buf[n+nrwords]&0xC0000000)==0xC0000000){
           printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
 
-                  if(id==1){evtendADC1++; cout<<"evt end = "<<evtendADC1<<endl;}
-                  if(id==2)evtendADC2++;
-                  if(id==3)evtendADC3++;
-                  if(id==4)evtendADC4++;
-                  if(id==5)evtendADC5++;
-                  if(id==6)evtendADC6++;
+                  if(id==1){evtendADC1++; eventend1->Fill(evtendADC1);cout<<"evt end = "<<evtendADC1<<endl;}
+                  if(id==2){evtendADC2++; eventend2->Fill(evtendADC2+10);}
+                  if(id==3){evtendADC3++; eventend3->Fill(evtendADC3+20);}
+                  if(id==4){evtendADC4++; eventend4->Fill(evtendADC4+30);}
+                  if(id==5){evtendADC5++; eventend5->Fill(evtendADC5+40);}
+                  if(id==6){evtendADC6++; eventend6->Fill(evtendADC6+50);}
               } else {cout<<"no proper event end for the data"<<endl;}
 
 		if(id<7){//Identify ADC data by module ID
@@ -820,7 +819,7 @@ int decoding(int f)
 
 
 	   } //loop size
-
+/*
      eventheader1->Fill(evtADC1); cout<<"Fill the histogram, evtADC1="<<evtADC1<<endl;
      eventheader2->Fill(evtADC2+10);
      eventheader3->Fill(evtADC3+20);
@@ -833,7 +832,7 @@ int decoding(int f)
      eventend4->Fill(evtendADC4+30);
      eventend5->Fill(evtendADC5+40);
      eventend6->Fill(evtendADC6+50);
-
+*/
 
 //     		cout<<"evtADC1="<<evtADC1<<endl
 //	    <<"evtADC2="<<evtADC2<<endl
