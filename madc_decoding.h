@@ -131,14 +131,14 @@ Int_t scaler[33],scaler_temp[33],
 
 
 
-   TH1F *timestampADC1 = new TH1F("TimeStampADC1","TS_ADC1",1000,0,6000);
-   TH1F *timestampADC2 = new TH1F("TimeStampADC2","TS_ADC2",1000,0,6000);
-   TH1F *timestampADC3 = new TH1F("TimeStampADC3","TS_ADC3",1000,0,6000);
-   TH1F *timestampADC4 = new TH1F("TimeStampADC4","TS_ADC4",1000,0,6000);
-   TH1F *timestampADC5 = new TH1F("TimeStampADC5","TS_ADC5",1000,0,6000);
-   TH1F *timestampADC6 = new TH1F("TimeStampADC6","TS_ADC5",1000,0,6000);
-   TH1F *timestampQDC1 = new TH1F("TimeStampQDC1","TS_QDC1",1000,0,6000);
-   TH1F *timestampTDC1 = new TH1F("TimeStampTDC1","TS_TDC1",1000,0,6000);
+   TH1F *timestampADC1 = new TH1F("TimeStampADC1","TS_ADC1",6000,0,6000);
+   TH1F *timestampADC2 = new TH1F("TimeStampADC2","TS_ADC2",6000,0,6000);
+   TH1F *timestampADC3 = new TH1F("TimeStampADC3","TS_ADC3",6000,0,6000);
+   TH1F *timestampADC4 = new TH1F("TimeStampADC4","TS_ADC4",6000,0,6000);
+   TH1F *timestampADC5 = new TH1F("TimeStampADC5","TS_ADC5",6000,0,6000);
+   TH1F *timestampADC6 = new TH1F("TimeStampADC6","TS_ADC5",6000,0,6000);
+   TH1F *timestampQDC1 = new TH1F("TimeStampQDC1","TS_QDC1",6000,0,6000);
+   TH1F *timestampTDC1 = new TH1F("TimeStampTDC1","TS_TDC1",6000,0,6000);
 
    TH1F *h101 = new TH1F("ADC1_ch1","Si_13_Strip1",nbinsx_madc, xlow_madc, xup_madc);
    TH1F *h102 = new TH1F("ADC1_ch2","Si_13_Strip2",nbinsx_madc, xlow_madc, xup_madc);
