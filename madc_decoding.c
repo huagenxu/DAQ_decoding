@@ -203,23 +203,23 @@ int decoding(int f)
 			//int evtId=0;
 
       if(id>0){
-          if(id==16)evtADC1++;
-          if(id==17)evtADC2++;
-          if(id==18)evtADC3++;
-          if(id==19)evtADC4++;
-          if(id==20)evtADC5++;
-          if(id==21)evtADC6++;
+        if(id==1){evtADC1++; eventheader1->Fill(10); }
+        if(id==2){evtADC2++; eventheader2->Fill(20);}
+        if(id==3){evtADC3++; eventheader3->Fill(30);}
+        if(id==4){evtADC4++; eventheader4->Fill(40);}
+        if(id==5){evtADC5++; eventheader5->Fill(50);}
+        if(id==6){evtADC6++; eventheader6->Fill(60);}
         }
 
 
         if((buf[n+nrwords]&0xC0000000)==0xC0000000){
         //  printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
-          if(id==16)evtendADC1++;
-          if(id==17)evtendADC2++;
-          if(id==18)evtendADC3++;
-          if(id==19)evtendADC4++;
-          if(id==20)evtendADC5++;
-          if(id==21)evtendADC6++;
+        if(id==1){evtendADC1++; eventend1->Fill(10);}
+        if(id==2){evtendADC2++; eventend2->Fill(20);}
+        if(id==3){evtendADC3++; eventend3->Fill(30);}
+        if(id==4){evtendADC4++; eventend4->Fill(40);}
+        if(id==5){evtendADC5++; eventend5->Fill(50);}
+        if(id==6){evtendADC6++; eventend6->Fill(60);}
 
         } else {cout<<"no proper event end for the data"<<endl;}
 
