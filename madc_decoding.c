@@ -1034,6 +1034,7 @@ TCanvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
    c72->Divide(1,2);
    c72->cd(1);
     gPad->SetLogz();
+    gPad->SetLogy();
 
    eventheader1->SetLineColor(kBlack);
    eventheader1->SetLineWidth(3);
@@ -1055,6 +1056,7 @@ TCanvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
    eventheader6->Draw("same");
 
    c72->cd(2);
+     gPad->SetLogy();
    eventend1->SetLineColor(kBlack);
    eventend1->SetLineWidth(3);
    eventend1->Draw();
@@ -1075,10 +1077,11 @@ TCanvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
    eventend6->Draw("same");
 
 
-TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,600,400);
+TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,700,500);
    c74->Divide(1,1);
    c74->cd(1);
     gPad->SetLogz();
+    gpad->SetLogy();
 /*   timestampADC1->SetXTitle("Time (ms)");
    timestampADC1->SetYTitle("Counts");
 */

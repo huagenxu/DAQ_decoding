@@ -136,7 +136,7 @@ Int_t scaler[33],scaler_temp[33],
    TH1F *timestampADC3 = new TH1F("TimeStampADC3","TS_ADC3",6000,0,6000);
    TH1F *timestampADC4 = new TH1F("TimeStampADC4","TS_ADC4",6000,0,6000);
    TH1F *timestampADC5 = new TH1F("TimeStampADC5","TS_ADC5",6000,0,6000);
-   TH1F *timestampADC6 = new TH1F("TimeStampADC6","TS_ADC5",6000,0,6000);
+   TH1F *timestampADC6 = new TH1F("TimeStampADC6","TS_ADC6",6000,0,6000);
    TH1F *timestampQDC1 = new TH1F("TimeStampQDC1","TS_QDC1",6000,0,6000);
    TH1F *timestampTDC1 = new TH1F("TimeStampTDC1","TS_TDC1",6000,0,6000);
 
