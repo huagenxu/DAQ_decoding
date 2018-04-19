@@ -1081,7 +1081,7 @@ TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,700,500);
    c74->Divide(1,1);
    c74->cd(1);
     gPad->SetLogz();
-    gpad->SetLogy();
+    gPad->SetLogy();
 /*   timestampADC1->SetXTitle("Time (ms)");
    timestampADC1->SetYTitle("Counts");
 */
