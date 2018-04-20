@@ -122,7 +122,7 @@ int decoding(int f)
 
 	if (buf[1]==endiantest)
 	{
-	   size=buf[0]; //cout<<"The size of cluster is "<<size<<endl;
+	   size=buf[0]; cout<<"The size of cluster is "<<size<<endl;
 	   if(size<8) return 1;
 	    // if(size>=8) printf("the size of cluster is %d \n",size);
 	} else 	{
@@ -451,7 +451,7 @@ int decoding(int f)
    	 }  //ADC QDC TDC data identified by module ID
 	else if((buf[n]&0xFFF00000) == 0x40000000)
 	{
-		//	printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
+			printf("The buf[%d]= 0x%08x is event header\n ",n,buf[n] );
        			  int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
 			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
                 //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
@@ -920,7 +920,7 @@ int openfile(char *file){
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
 		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<5000000&&res ==0 );
+	} while (count++<1&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
