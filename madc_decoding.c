@@ -455,7 +455,7 @@ int decoding(int f)
        			  int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
 			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
                 //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
-			  int id = ((buf[n]>>16)&0xff);	//	printf("module_id=%d \n",id);
+			  int id = ((buf[n]>>16)&0xff);		printf("module_id=%d \n",id);
 			  temp_ID = id;
 			//int evtId=0;
 
