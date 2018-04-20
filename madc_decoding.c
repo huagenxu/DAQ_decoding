@@ -933,7 +933,7 @@ int openfile(char *file){
 		} //cluster events
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
-		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
+		if(count%1 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
 	} while (count++<200&&res ==0 );
 
 	//close(f);
