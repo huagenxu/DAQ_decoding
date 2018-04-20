@@ -139,7 +139,7 @@ int decoding(int f)
   //   printf("after reallocate, bufsize is %d \n", bufsize);
 
 	 read(f,buf+2,(size-1)*4); //buf+2 means to skip the cluster size and endian number
-	 printf("read(f,buf+2,(size-1)*4)\n");
+//	 printf("read(f,buf+2,(size-1)*4)\n");
 
 /*
 	if (buf[2]!=0)
@@ -920,7 +920,7 @@ int openfile(char *file){
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
 		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<200&&res ==0 );
+	} while (count++<200000&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
