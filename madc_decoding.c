@@ -155,7 +155,7 @@ int decoding(int f)
 
 //loop one cluster data with datasize of "size"
 
-	    int time0_ADC1=0,
+	    unsigned int time0_ADC1=0,
 		      time0_ADC2=0,
 		      time0_ADC3=0,
 		      time0_ADC4=0,
@@ -164,7 +164,7 @@ int decoding(int f)
 		      time0_QDC1=0,
 		      time0_TDC1=0;
 
-	    int time_evt_ADC1=0,
+	   unsigned int time_evt_ADC1=0,
 		      time_evt_ADC2=0,
 		      time_evt_ADC3=0,
 		      time_evt_ADC4=0,
@@ -178,7 +178,8 @@ int decoding(int f)
 	int evtADC1=0, evtADC2=0,evtADC3=0, evtADC4=0, evtADC5=0, evtADC6=0, evtQDC1=0, evtTDC1=0;
   int evtendADC1=0, evtendADC2=0,evtendADC3=0, evtendADC4=0, evtendADC5=0, evtendADC6=0, evtendQDC1=0, evtendTDC1=0;
 
-	int end0=0, dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8;
+	unsigned int end0=0;
+  int dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8;
 
   //loop the cluster data with size
 	for (int n=0;n<size+1;n++)
