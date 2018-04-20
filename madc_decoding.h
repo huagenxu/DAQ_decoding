@@ -28,7 +28,7 @@ u_int32_t *buf= (u_int32_t*)malloc(8);
 Int_t bufsize = 0;
 Int_t data0[9][32];
 Int_t data1[9][34];
-Int_t data2[9][1];
+u_int32_t data2[9][1];
 Int_t cldata[1000][9][34];
 
 Int_t scaler[33],scaler_temp[33],
