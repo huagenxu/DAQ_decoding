@@ -637,7 +637,7 @@ int decoding(int f)
 			               } //event end
 
                      //check the dt is abnormal to the expected;
-                     if(abs(abs(dt2)-691)>5||abs(abs(dt3)-1555)>5||abs(abs(dt3)-2575)>5||abs(abs(dt4)-3253)>5||abs(abs(dt5)-4180)>5){
+                     if(abs(abs(dt2)-691)>5||abs(abs(dt3)-1555)>5||abs(abs(dt4)-2575)>5||abs(abs(dt5)-3253)>5||abs(abs(dt6)-4180)>5){
                        cout<<"The time stamp is abnormal"<<endl;
                        cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<endl
                            <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<endl
