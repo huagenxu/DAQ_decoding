@@ -129,6 +129,8 @@ Int_t scaler[33],scaler_temp[33],
    TH1F *eventend5 = new TH1F("EvtEnd5","EE5",200,0.,200.);
    TH1F *eventend6 = new TH1F("EvtEnd6","EE6",200,0.,200.);
 
+   TH1F *clustersize = new TH1F("ClusterSize","cluster",8000,0.,8000.);
+
 
 
    TH1F *timestampADC1 = new TH1F("TimeStampADC1","TS_ADC1",6000,0,6000);

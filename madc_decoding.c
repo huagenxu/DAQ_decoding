@@ -124,6 +124,8 @@ int decoding(int f)
 	{
 	   size=buf[0]; cout<<"The size of cluster is "<<size<<endl;
 	   if(size<8) return 1;
+
+     clustersize->Fill(size);
 	    // if(size>=8) printf("the size of cluster is %d \n",size);
 	} else 	{
 	   printf("In decoding(): cluster endian (buffer[1]) is not 0x12345678!\n");
