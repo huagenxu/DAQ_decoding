@@ -205,23 +205,23 @@ int decoding(int f)
 			//int evtId=0;
 
       if(id>0){
-        if(id==1){evtADC1++; eventheader1->Fill(10); }
-        if(id==2){evtADC2++; eventheader2->Fill(20);}
-        if(id==3){evtADC3++; eventheader3->Fill(30);}
-        if(id==4){evtADC4++; eventheader4->Fill(40);}
-        if(id==5){evtADC5++; eventheader5->Fill(50);}
-        if(id==6){evtADC6++; eventheader6->Fill(60);}
+        if(id==16){evtADC1++; eventheader1->Fill(10); }
+        if(id==17){evtADC2++; eventheader2->Fill(20);}
+        if(id==18){evtADC3++; eventheader3->Fill(30);}
+        if(id==19){evtADC4++; eventheader4->Fill(40);}
+        if(id==20){evtADC5++; eventheader5->Fill(50);}
+        if(id==21){evtADC6++; eventheader6->Fill(60);}
         }
 
 
         if((buf[n+nrwords]&0xC0000000)==0xC0000000){
         //  printf("The buf[%d]= 0x%08x is event end\n", n+nrwords, buf[n+nrwords]);
-        if(id==1){evtendADC1++; eventend1->Fill(10);}
-        if(id==2){evtendADC2++; eventend2->Fill(20);}
-        if(id==3){evtendADC3++; eventend3->Fill(30);}
-        if(id==4){evtendADC4++; eventend4->Fill(40);}
-        if(id==5){evtendADC5++; eventend5->Fill(50);}
-        if(id==6){evtendADC6++; eventend6->Fill(60);}
+        if(id==16){evtendADC1++; eventend1->Fill(10);}
+        if(id==17){evtendADC2++; eventend2->Fill(20);}
+        if(id==18){evtendADC3++; eventend3->Fill(30);}
+        if(id==19){evtendADC4++; eventend4->Fill(40);}
+        if(id==20){evtendADC5++; eventend5->Fill(50);}
+        if(id==21){evtendADC6++; eventend6->Fill(60);}
 
         } else {cout<<"no proper event end for the data"<<endl;}
 
@@ -244,7 +244,7 @@ int decoding(int f)
 				                  //   dt1 = end0 - time_evt_ADC1;
 				                     time_evt_ADC1=end0;
                              dt1 = end0 - time_evt_ADC1;
-				cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
+	//			cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
 	//			 cout<<"the ADC1 dt1= "<<dt1<<endl;
 			//	cout<<"id= "<<id<<" dt= "<<dt1*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
@@ -271,7 +271,7 @@ int decoding(int f)
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt2 = end0 - time_evt_ADC1;
 				                    time_evt_ADC2=end0;
-				cout<<"time stamp in the EOE of ADC2=  "<<end0<<endl;
+	//			cout<<"time stamp in the EOE of ADC2=  "<<end0<<endl;
 	//			 cout<<"the ADC2 dt2= "<<dt2<<endl;
 			//	 cout<<"id= "<<id<<" dt= "<<dt2*62.5/1000000<<" ms"<<endl;
 			//	 cout<<"The cluster count is            "<<count<<endl;
@@ -296,7 +296,7 @@ int decoding(int f)
 				                     end0 = buf[n+i] &0x3FFFFFFF;
 				                     dt3 = end0 - time_evt_ADC1;
 				                     time_evt_ADC3=end0;
-				    cout<<"time stamp in the EOE of ADC3=  "<<end0<<endl;
+	//			    cout<<"time stamp in the EOE of ADC3=  "<<end0<<endl;
 	//			 cout<<"the ADC3 dt3= "<<dt3<<endl;
 		//		 cout<<"id= "<<id<<" dt= "<<dt3*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
@@ -322,7 +322,7 @@ int decoding(int f)
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt4 = end0 - time_evt_ADC1;
 				                    time_evt_ADC4=end0;
-				cout<<"time stamp in the EOE of ADC4=  "<<end0<<endl;
+	//			cout<<"time stamp in the EOE of ADC4=  "<<end0<<endl;
 	//			cout<<"the ADC4 dt4= "<<dt4<<endl;
 				///cout<<"id= "<<id<<" dt= "<<dt4*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
@@ -345,7 +345,7 @@ int decoding(int f)
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt5 = end0 - time_evt_ADC1;
 				                    time_evt_ADC5=end0;
-				cout<<"time stamp in the EOE of ADC5=  "<<end0<<endl;
+	//			cout<<"time stamp in the EOE of ADC5=  "<<end0<<endl;
 //				cout<<"the ADC5 dt5= "<<dt5<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt5*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
@@ -369,7 +369,7 @@ int decoding(int f)
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt6 = end0 - time_evt_ADC1;
 				                    time_evt_ADC6=end0;
-				cout<<"time stamp in the EOE of ADC6=  "<<end0<<endl;
+	//			cout<<"time stamp in the EOE of ADC6=  "<<end0<<endl;
 	//			cout<<"the ADC6 dt6= "<<dt6<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt6*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
@@ -635,6 +635,18 @@ int decoding(int f)
 				              //      evtADC6++;
 
 			               } //event end
+
+                     //check the dt is abnormal to the expected;
+                     if(abs(dt2-691)>5||abs(dt3-1555)>5||abs(dt3-2575)>5||abs(dt4-3253)>5||abs(dt5-4180)>5){
+                       cout<<"The time stamp is abnormal"<<endl;
+                       cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<endl
+                           <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<endl
+                           <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<endl
+                           <<"the dt4= "<<dt4<<" TS4= "<<data2[4][0]<<endl
+                           <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<endl
+                           <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<endl;
+                     }
+
 			             } else continue;  //module ID
 
 		        } //loop one ADC data (nrwords)
