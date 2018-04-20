@@ -922,7 +922,7 @@ int openfile(char *file){
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
 		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<200&&res ==0 );
+	} while (count++<2000000&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
