@@ -922,7 +922,7 @@ int openfile(char *file){
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
 		if(count%1000 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<200000&&res ==0 );
+	} while (count++<200&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
@@ -1079,8 +1079,10 @@ TCanvas *c72 = new TCanvas("c72","EventCounts",150,150,600,600);
    eventend6->Draw("same");
 
 
-TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,700,500);
-   c74->Divide(1,1);
+
+
+TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,700,800);
+   c74->Divide(1,2);
    c74->cd(1);
     gPad->SetLogz();
     gPad->SetLogy();
@@ -1129,10 +1131,16 @@ TCanvas *c74 = new TCanvas("c74","Time Stamp of ADC1",120,120,700,500);
 //    leg3->AddEntry(timestampTDC1, "TDC1","L");
  //   leg3->AddEntry(h_ge1[2], "Strip3","L");
 
-
     leg3->SetMargin(0.15);
     leg3->SetFillColor(0);
     leg3->Draw();
+
+    c74->cd(2);
+     gPad->SetLogz();
+     gPad->SetLogy();
+    clustersize->SetXTitle("Size of cluster");
+    clustersize->SetYTitle("Counts");
+    clustersize->Draw();
 
 
 
