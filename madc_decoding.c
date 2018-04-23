@@ -178,7 +178,7 @@ int decoding(int f)
 	int evtADC1=0, evtADC2=0,evtADC3=0, evtADC4=0, evtADC5=0, evtADC6=0, evtQDC1=0, evtTDC1=0;
   int evtendADC1=0, evtendADC2=0,evtendADC3=0, evtendADC4=0, evtendADC5=0, evtendADC6=0, evtendQDC1=0, evtendTDC1=0;
 
-	u_int32_t end0=0;
+	u_int32_t end0=0,end1,end2,end3,end4,end5,end6;
   int dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8;
 
   //loop the cluster data with size
@@ -496,12 +496,12 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                 //    cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                             end0 = 0, dt1=0;
-				                     end0 = buf[n+i] &0x3FFFFFFF;
+                             end1 = 0, dt1=0;
+				                     end1 = buf[n+i] &0x3FFFFFFF;
 				                  //   dt1 = end0 - time_evt_ADC1;
                           cout<<"1 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
-				                     time_evt_ADC1=end0;
-                             dt1 = end0 - time_evt_ADC1;
+				                     time_evt_ADC1=end1;
+                             dt1 = end1 - time_evt_ADC1;
                              cout<<"2 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
 				cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
 	//			 cout<<"the ADC1 dt1= "<<dt1<<endl;
@@ -509,9 +509,9 @@ int decoding(int f)
 				// cout<<"The cluster count is            "<<count<<endl;
 
 				                     timestampADC1->Fill(abs(dt1)+100);
-				                     data2[id][0] = end0;
+				                     data2[id][0] = end1;
 
-				                     cldata[evtADC1][id][32]=end0; //timestamp of 1 event
+				                     cldata[evtADC1][id][32]=end1; //timestamp of 1 event
 				                  //   evtADC1++;
 			//	cout<<"evtADC1="<<evtADC1<<endl;d
                       } //event end
@@ -527,18 +527,18 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                   //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                            end0 = 0, dt2=0;
-				                    end0 = buf[n+i] &0x3FFFFFFF;
-				                    dt2 = end0 - time_evt_ADC1;
-				                    time_evt_ADC2=end0;
+                            end2 = 0, dt2=0;
+				                    end2 = buf[n+i] &0x3FFFFFFF;
+				                    dt2 = end2 - time_evt_ADC1;
+				                    time_evt_ADC2=end2;
 		//		cout<<"time stamp in the EOE of ADC2=  "<<end0<<endl;
 				 cout<<"the ADC2 dt2= "<<dt2<<endl;
 			//	 cout<<"id= "<<id<<" dt= "<<dt2*62.5/1000000<<" ms"<<endl;
 			//	 cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC2->Fill(abs(dt2));
-				                    data2[id][0] = end0;
+				                    data2[id][0] = end2;
 
-				                    cldata[evtADC2][id][32]=end0; //timestamp of 1 event
+				                    cldata[evtADC2][id][32]=end2; //timestamp of 1 event
 				                  //  evtADC2++;
 			//	cout<<"evtADC2="<<evtADC2<<endl;
                       } //event end
@@ -553,18 +553,18 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                              end0 = 0, dt3=0;
-				                     end0 = buf[n+i] &0x3FFFFFFF;
-				                     dt3 = end0 - time_evt_ADC1;
-				                     time_evt_ADC3=end0;
+                              end3 = 0, dt3=0;
+				                     end3 = buf[n+i] &0x3FFFFFFF;
+				                     dt3 = end3 - time_evt_ADC1;
+				                     time_evt_ADC3=end3;
 			//	    cout<<"time stamp in the EOE of ADC3=  "<<end0<<endl;
 				 cout<<"the ADC3 dt3= "<<dt3<<endl;
 		//		 cout<<"id= "<<id<<" dt= "<<dt3*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
 
 				                     timestampADC3->Fill(abs(dt3));
-				                     data2[id][0] = end0;
-				                     cldata[evtADC3][id][32]=end0; //timestamp of 1 event
+				                     data2[id][0] = end3;
+				                     cldata[evtADC3][id][32]=end3; //timestamp of 1 event
 				                   //  evtADC3++;
 		//		cout<<"evtADC3="<<evtADC3<<endl;
 
@@ -580,17 +580,17 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                            end0 = 0, dt4=0;
-				                    end0 = buf[n+i] &0x3FFFFFFF;
-				                    dt4 = end0 - time_evt_ADC1;
-				                    time_evt_ADC4=end0;
+                            end4 = 0, dt4=0;
+				                    end4 = buf[n+i] &0x3FFFFFFF;
+				                    dt4 = end4 - time_evt_ADC1;
+				                    time_evt_ADC4=end4;
 		//		cout<<"time stamp in the EOE of ADC4=  "<<end0<<endl;
 				cout<<"the ADC4 dt4= "<<dt4<<endl;
 				///cout<<"id= "<<id<<" dt= "<<dt4*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC4->Fill(abs(dt4));
-				                    data2[id][0] = end0;
-				                    cldata[evtADC4][id][32]=end0; //timestamp of 1 event
+				                    data2[id][0] = end4;
+				                    cldata[evtADC4][id][32]=end4; //timestamp of 1 event
 				               //     evtADC4++;
 
 			                } //event end
@@ -604,17 +604,17 @@ int decoding(int f)
 				                    cldata[evtADC5][id][ch]=data0[id][ch];
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                            end0 = 0, dt5=0;
-				                    end0 = buf[n+i] &0x3FFFFFFF;
-				                    dt5 = end0 - time_evt_ADC1;
-				                    time_evt_ADC5=end0;
+                            end5 = 0, dt5=0;
+				                    end5 = buf[n+i] &0x3FFFFFFF;
+				                    dt5 = end5 - time_evt_ADC1;
+				                    time_evt_ADC5=end5;
 		//		cout<<"time stamp in the EOE of ADC5=  "<<end0<<endl;
 				cout<<"the ADC5 dt5= "<<dt5<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt5*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC5->Fill(abs(dt5));
-				                    data2[id][0] = end0;
-				                    cldata[evtADC5][id][32]=end0; //timestamp of 1 event
+				                    data2[id][0] = end5;
+				                    cldata[evtADC5][id][32]=end5; //timestamp of 1 event
 				             //       evtADC5++;
 
   			                } //event end
@@ -629,18 +629,18 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                            end0 = 0, dt6=0;
-				                    end0 = buf[n+i] &0x3FFFFFFF;
-				                    dt6 = end0 - time_evt_ADC1;
-				                    time_evt_ADC6=end0;
+                            end6 = 0, dt6=0;
+				                    end6 = buf[n+i] &0x3FFFFFFF;
+				                    dt6 = end6 - time_evt_ADC1;
+				                    time_evt_ADC6=end6;
 				//cout<<"time stamp in the EOE of ADC6=  "<<end0<<endl;
 				cout<<"the ADC6 dt6= "<<dt6<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt6*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC6->Fill(abs(dt6));
-				                    data2[id][0] = end0;
+				                    data2[id][0] = end6;
 
-				                    cldata[evtADC6][id][32]=end0; //timestamp of 1 event
+				                    cldata[evtADC6][id][32]=end6; //timestamp of 1 event
 				              //      evtADC6++;
 
 			               } //event end
