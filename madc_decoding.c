@@ -458,7 +458,7 @@ int decoding(int f)
        			  int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
 			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
                 //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
-			  int id = ((buf[n]>>16)&0xff);	//	printf("module_id=%d \n",id);
+			  int id = ((buf[n]>>16)&0xff);		printf("module_id=%d \n",id);
 			  temp_ID = id;
 			//int evtId=0;
 
@@ -496,6 +496,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                 //    cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+                             end0 = 0;
 				                     end0 = buf[n+i] &0x3FFFFFFF;
 				                  //   dt1 = end0 - time_evt_ADC1;
                           cout<<"1 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
@@ -526,6 +527,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                   //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+                            end0 = 0;
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt2 = end0 - time_evt_ADC1;
 				                    time_evt_ADC2=end0;
@@ -551,6 +553,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+                              end0 = 0;
 				                     end0 = buf[n+i] &0x3FFFFFFF;
 				                     dt3 = end0 - time_evt_ADC1;
 				                     time_evt_ADC3=end0;
@@ -577,6 +580,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+                            end0 = 0;
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt4 = end0 - time_evt_ADC1;
 				                    time_evt_ADC4=end0;
@@ -600,6 +604,7 @@ int decoding(int f)
 				                    cldata[evtADC5][id][ch]=data0[id][ch];
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+                            end0 = 0;
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt5 = end0 - time_evt_ADC1;
 				                    time_evt_ADC5=end0;
@@ -624,6 +629,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
+                            end0 = 0;
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt6 = end0 - time_evt_ADC1;
 				                    time_evt_ADC6=end0;
@@ -643,30 +649,30 @@ int decoding(int f)
 
 			             } else continue;  //module ID
 
-                   //check the dt is abnormal to the expected;
-              /*     if(abs(abs(dt2)-691)>5||abs(abs(dt3)-1555)>5||abs(abs(dt4)-2575)>5||abs(abs(dt5)-3253)>5||abs(abs(dt6)-4180)>5){
-                     cout<<"The time stamp is abnormal"<<endl;
-                     cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
-                         <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
-                         <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<" "<<time_evt_ADC3<<endl
-                         <<"the dt4= "<<dt4<<" TS4= "<<data2[4][0]<<" "<<time_evt_ADC4<<endl
-                         <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl
-                         <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<" "<<time_evt_ADC6<<endl;
-                   }
-                   */ //display the time stamp difference
-
-                   if(abs(dt2)>5000||abs(dt3)>5000||abs(dt4)>5000||abs(dt5)>5000||abs(dt6)>5000){
-                          cout<<"The time stamp is abnormal"<<endl;
-                          cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
-                              <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
-                              <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<" "<<time_evt_ADC3<<endl
-                              <<"the dt4= "<<dt4<<" TS4= "<<data2[4][0]<<" "<<time_evt_ADC4<<endl
-                              <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl
-                              <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<" "<<time_evt_ADC6<<endl;
-                        }
-
 
 		        } //loop one ADC data (nrwords)
+
+            //check the dt is abnormal to the expected;
+       /*     if(abs(abs(dt2)-691)>5||abs(abs(dt3)-1555)>5||abs(abs(dt4)-2575)>5||abs(abs(dt5)-3253)>5||abs(abs(dt6)-4180)>5){
+              cout<<"The time stamp is abnormal"<<endl;
+              cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
+                  <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
+                  <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<" "<<time_evt_ADC3<<endl
+                  <<"the dt4= "<<dt4<<" TS4= "<<data2[4][0]<<" "<<time_evt_ADC4<<endl
+                  <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl
+                  <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<" "<<time_evt_ADC6<<endl;
+            }
+            */ //display the time stamp difference
+
+            if(abs(dt2)>5000||abs(dt3)>5000||abs(dt4)>5000||abs(dt5)>5000||abs(dt6)>5000){
+                   cout<<"The time stamp is abnormal"<<endl;
+                   cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
+                       <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
+                       <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<" "<<time_evt_ADC3<<endl
+                       <<"the dt4= "<<dt4<<" TS4= "<<data2[4][0]<<" "<<time_evt_ADC4<<endl
+                       <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl
+                       <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<" "<<time_evt_ADC6<<endl;
+                 }
 
             n += nrwords;
 
