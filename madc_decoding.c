@@ -458,7 +458,7 @@ int decoding(int f)
        			  int adcres = buf[n]>>12 & 0x7;		//printf("the ADC resolution is %d \n",adcres);
 			  int nrwords = buf[n]&0xfff;		//printf("the following words are %d \n",nrwords);
                 //	int id = (buf[n]>>16)&0xff;		printf("the ADC id is %d \n",id);
-			  int id = ((buf[n]>>16)&0xff);		printf("module_id=%d \n",id);
+			  int id = ((buf[n]>>16)&0xff);	//	printf("module_id=%d \n",id);
 			  temp_ID = id;
 			//int evtId=0;
 
@@ -499,11 +499,11 @@ int decoding(int f)
                              end1 = 0, dt1=0;
 				                     end1 = buf[n+i] &0x3FFFFFFF;
 				                  //   dt1 = end0 - time_evt_ADC1;
-                          cout<<"1 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
+                      //    cout<<"1 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
 				                     time_evt_ADC1=end1;
                              dt1 = end1 - time_evt_ADC1;
-                             cout<<"2 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
-				cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
+                    //         cout<<"2 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
+		//		cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
 	//			 cout<<"the ADC1 dt1= "<<dt1<<endl;
 			//	cout<<"id= "<<id<<" dt= "<<dt1*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
@@ -532,7 +532,7 @@ int decoding(int f)
 				                    dt2 = end2 - time_evt_ADC1;
 				                    time_evt_ADC2=end2;
 		//		cout<<"time stamp in the EOE of ADC2=  "<<end0<<endl;
-				 cout<<"the ADC2 dt2= "<<dt2<<endl;
+			//	 cout<<"the ADC2 dt2= "<<dt2<<endl;
 			//	 cout<<"id= "<<id<<" dt= "<<dt2*62.5/1000000<<" ms"<<endl;
 			//	 cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC2->Fill(abs(dt2));
@@ -558,7 +558,7 @@ int decoding(int f)
 				                     dt3 = end3 - time_evt_ADC1;
 				                     time_evt_ADC3=end3;
 			//	    cout<<"time stamp in the EOE of ADC3=  "<<end0<<endl;
-				 cout<<"the ADC3 dt3= "<<dt3<<endl;
+			//	 cout<<"the ADC3 dt3= "<<dt3<<endl;
 		//		 cout<<"id= "<<id<<" dt= "<<dt3*62.5/1000000<<" ms"<<endl;
 				// cout<<"The cluster count is            "<<count<<endl;
 
@@ -585,7 +585,7 @@ int decoding(int f)
 				                    dt4 = end4 - time_evt_ADC1;
 				                    time_evt_ADC4=end4;
 		//		cout<<"time stamp in the EOE of ADC4=  "<<end0<<endl;
-				cout<<"the ADC4 dt4= "<<dt4<<endl;
+			//	cout<<"the ADC4 dt4= "<<dt4<<endl;
 				///cout<<"id= "<<id<<" dt= "<<dt4*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC4->Fill(abs(dt4));
@@ -609,7 +609,7 @@ int decoding(int f)
 				                    dt5 = end5 - time_evt_ADC1;
 				                    time_evt_ADC5=end5;
 		//		cout<<"time stamp in the EOE of ADC5=  "<<end0<<endl;
-				cout<<"the ADC5 dt5= "<<dt5<<endl;
+			//	cout<<"the ADC5 dt5= "<<dt5<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt5*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC5->Fill(abs(dt5));
@@ -634,7 +634,7 @@ int decoding(int f)
 				                    dt6 = end6 - time_evt_ADC1;
 				                    time_evt_ADC6=end6;
 				//cout<<"time stamp in the EOE of ADC6=  "<<end0<<endl;
-				cout<<"the ADC6 dt6= "<<dt6<<endl;
+				//cout<<"the ADC6 dt6= "<<dt6<<endl;
 				//cout<<"id= "<<id<<" dt= "<<dt6*62.5/1000000<<" ms"<<endl;
 				//cout<<"The cluster count is            "<<count<<endl;
 				                    timestampADC6->Fill(abs(dt6));
@@ -956,8 +956,8 @@ int openfile(char *file){
 		} //cluster events
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
-		if(count%1 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
-	} while (count++<170&&res ==0 );
+		if(count%100 == 0) cout<<"The No of "<<count<<" clusters have been decoded"<<endl;
+	} while (count++<170000&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
