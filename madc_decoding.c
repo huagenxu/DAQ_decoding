@@ -122,7 +122,7 @@ int decoding(int f)
 
 	if (buf[1]==endiantest)
 	{
-	   size=buf[0]; cout<<"The size of cluster is "<<size<<endl;
+	   size=buf[0]; //cout<<"The size of cluster is "<<size<<endl;
 	   if(size<8) return 1;
 
      clustersize->Fill(size);
