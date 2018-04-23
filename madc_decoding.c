@@ -179,7 +179,7 @@ int decoding(int f)
   int evtendADC1=0, evtendADC2=0,evtendADC3=0, evtendADC4=0, evtendADC5=0, evtendADC6=0, evtendQDC1=0, evtendTDC1=0;
 
 	u_int32_t end0=0,end1,end2,end3,end4,end5,end6;
-  int dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8;
+  int dt1=0,dt2=0,dt3=0,dt4=0,dt5=0,dt6=0,dt7=0,dt8=0;
 
   //loop the cluster data with size
 	for (int n=0;n<size+1;n++)
