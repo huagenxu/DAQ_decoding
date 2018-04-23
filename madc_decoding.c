@@ -496,7 +496,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                 //    cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                             end0 = 0;
+                             end0 = 0, dt1=0;
 				                     end0 = buf[n+i] &0x3FFFFFFF;
 				                  //   dt1 = end0 - time_evt_ADC1;
                           cout<<"1 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
@@ -527,7 +527,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                   //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                            end0 = 0;
+                            end0 = 0, dt2=0;
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt2 = end0 - time_evt_ADC1;
 				                    time_evt_ADC2=end0;
@@ -553,7 +553,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                              end0 = 0;
+                              end0 = 0, dt3=0;
 				                     end0 = buf[n+i] &0x3FFFFFFF;
 				                     dt3 = end0 - time_evt_ADC1;
 				                     time_evt_ADC3=end0;
@@ -580,7 +580,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                            end0 = 0;
+                            end0 = 0, dt4=0;
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt4 = end0 - time_evt_ADC1;
 				                    time_evt_ADC4=end0;
@@ -604,7 +604,7 @@ int decoding(int f)
 				                    cldata[evtADC5][id][ch]=data0[id][ch];
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                            end0 = 0;
+                            end0 = 0, dt5=0;
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt5 = end0 - time_evt_ADC1;
 				                    time_evt_ADC5=end0;
@@ -629,7 +629,7 @@ int decoding(int f)
 
                	      }else if((buf[n+i]&0xC0000000)==0xC0000000){
                  //  cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
-                            end0 = 0;
+                            end0 = 0, dt6=0;
 				                    end0 = buf[n+i] &0x3FFFFFFF;
 				                    dt6 = end0 - time_evt_ADC1;
 				                    time_evt_ADC6=end0;
