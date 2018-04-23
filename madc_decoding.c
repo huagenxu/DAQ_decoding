@@ -960,8 +960,8 @@ int openfile(char *file){
 		} //cluster events
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
-		if(count%10 == 0) cout<<"******** The No of "<<count<<" clusters have been decoded *******"<<endl;
-	} while (count++<110000&&res ==0 );
+		if(count%50 == 0) cout<<"******** The No of "<<count<<" clusters have been decoded *******"<<endl;
+	} while (count++<10000&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
