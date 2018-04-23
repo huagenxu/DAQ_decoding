@@ -653,7 +653,7 @@ int decoding(int f)
 		        } //loop one ADC data (nrwords)
 
             //check the dt is abnormal to the expected;
-       /*     if(abs(abs(dt2)-691)>5||abs(abs(dt3)-1555)>5||abs(abs(dt4)-2575)>5||abs(abs(dt5)-3253)>5||abs(abs(dt6)-4180)>5){
+            if(abs(abs(dt2)-750)>100||abs(abs(dt3)-1420)>100||abs(abs(dt4)-1860)>100||abs(abs(dt5)-2700)>100||abs(abs(dt6)-3160)>100){
               cout<<"The time stamp is abnormal"<<endl;
               cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
                   <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
@@ -662,9 +662,9 @@ int decoding(int f)
                   <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl
                   <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<" "<<time_evt_ADC6<<endl;
             }
-            */ //display the time stamp difference
+             //display the time stamp difference
 
-            if(abs(dt2)>5000||abs(dt3)>5000||abs(dt4)>5000||abs(dt5)>5000||abs(dt6)>5000){
+        /*    if(abs(dt2)>5000||abs(dt3)>5000||abs(dt4)>5000||abs(dt5)>5000||abs(dt6)>5000){
                    cout<<"The time stamp is abnormal"<<endl;
                    cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
                        <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
@@ -673,7 +673,7 @@ int decoding(int f)
                        <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl
                        <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<" "<<time_evt_ADC6<<endl;
                  }
-
+                */
             n += nrwords;
 
    	    }else if(id==7){//Identify QDC data by module ID
