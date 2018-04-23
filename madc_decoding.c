@@ -155,7 +155,7 @@ int decoding(int f)
 
 //loop one cluster data with datasize of "size"
 
-	    unsigned int time0_ADC1=0,
+	    u_int32_t time0_ADC1=0,
 		      time0_ADC2=0,
 		      time0_ADC3=0,
 		      time0_ADC4=0,
@@ -164,7 +164,7 @@ int decoding(int f)
 		      time0_QDC1=0,
 		      time0_TDC1=0;
 
-	   unsigned int time_evt_ADC1=0,
+	   u_int32_t time_evt_ADC1=0,
 		      time_evt_ADC2=0,
 		      time_evt_ADC3=0,
 		      time_evt_ADC4=0,
@@ -178,7 +178,7 @@ int decoding(int f)
 	int evtADC1=0, evtADC2=0,evtADC3=0, evtADC4=0, evtADC5=0, evtADC6=0, evtQDC1=0, evtTDC1=0;
   int evtendADC1=0, evtendADC2=0,evtendADC3=0, evtendADC4=0, evtendADC5=0, evtendADC6=0, evtendQDC1=0, evtendTDC1=0;
 
-	unsigned int end0=0;
+	u_int32_t end0=0;
   int dt1,dt2,dt3,dt4,dt5,dt6,dt7,dt8;
 
   //loop the cluster data with size
@@ -498,8 +498,10 @@ int decoding(int f)
                 //    cout<<"The data of buf["<<n+i<<"] is event end"<<endl;
 				                     end0 = buf[n+i] &0x3FFFFFFF;
 				                  //   dt1 = end0 - time_evt_ADC1;
+                          cout<<"1 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
 				                     time_evt_ADC1=end0;
                              dt1 = end0 - time_evt_ADC1;
+                             cout<<"2 time_evt_ADC1 = "<<time_evt_ADC1<<endl;
 				cout<<"time stamp in the EOE of ADC1=  "<<end0<<endl;
 	//			 cout<<"the ADC1 dt1= "<<dt1<<endl;
 			//	cout<<"id= "<<id<<" dt= "<<dt1*62.5/1000000<<" ms"<<endl;
