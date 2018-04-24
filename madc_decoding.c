@@ -651,7 +651,7 @@ int decoding(int f)
 
 
 		        } //loop one ADC data (nrwords)
-
+/*
             //check the dt is abnormal to the expected;
             if(abs(abs(dt2)-750)>100&&time_evt_ADC2!=0){
               cout<<"The ADC2 time stamp is abnormal"<<endl;
@@ -689,6 +689,7 @@ int decoding(int f)
                   <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl
                   <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<" "<<time_evt_ADC6<<endl;
             }
+            */
              //display the time stamp difference
 
         /*    if(abs(dt2)>5000||abs(dt3)>5000||abs(dt4)>5000||abs(dt5)>5000||abs(dt6)>5000){
@@ -983,8 +984,8 @@ int openfile(char *file){
 		} //cluster events
 
       //  printf("In openfile(): (decoding status) res=decoding(f) is %d \n", res);
-		if(count%1 == 0) cout<<"******** The No of "<<count<<" clusters have been decoded *******"<<endl;
-	} while (count++<3000&&res ==0 );
+		if(count%1000 == 0) cout<<"******** The No of "<<count<<" clusters have been decoded *******"<<endl;
+	} while (count++<30000000&&res ==0 );
 
 	//close(f);
        printf("In openfile():   close the file!\n");
