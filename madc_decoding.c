@@ -653,31 +653,40 @@ int decoding(int f)
 		        } //loop one ADC data (nrwords)
 
             //check the dt is abnormal to the expected;
-            if( abs(abs(dt2)-750)>100&&time_evt_ADC2!=0){
-              cout<<"The time stamp is abnormal"<<endl;
+            if(abs(abs(dt2)-750)>100&&time_evt_ADC2!=0){
+              cout<<"The ADC2 time stamp is abnormal"<<endl;
               cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
                   <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl;
             }
-            if(
-                abs(abs(dt3)-1420)>100&&time_evt_ADC3!=0){
-              cout<<"The time stamp is abnormal"<<endl;
+            if(abs(abs(dt3)-1420)>100&&time_evt_ADC3!=0){
+              cout<<"The ADC3 time stamp is abnormal"<<endl;
               cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
+                  <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
                   <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<" "<<time_evt_ADC3<<endl;
 
             }
             if(abs(abs(dt4)-1860)>100&&time_evt_ADC4!=0){
-              cout<<"The time stamp is abnormal"<<endl;
+              cout<<"The ADC4 time stamp is abnormal"<<endl;
               cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
+                  <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
+                  <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<" "<<time_evt_ADC3<<endl
                   <<"the dt4= "<<dt4<<" TS4= "<<data2[4][0]<<" "<<time_evt_ADC4<<endl;
             }
             if(abs(abs(dt5)-2700)>100&&time_evt_ADC5!=0){
-              cout<<"The time stamp is abnormal"<<endl;
+              cout<<"The ADC5 time stamp is abnormal"<<endl;
               cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
+                  <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
+                  <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<" "<<time_evt_ADC3<<endl
+                  <<"the dt4= "<<dt4<<" TS4= "<<data2[4][0]<<" "<<time_evt_ADC4<<endl
                   <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl;
             }
             if(abs(abs(dt6)-3160)>100&&time_evt_ADC6!=0){
-              cout<<"The time stamp is abnormal"<<endl;
+              cout<<"The ADC6 time stamp is abnormal"<<endl;
               cout<<"the dt1= "<<dt1<<" TS1= "<<data2[1][0]<<" "<<time_evt_ADC1<<endl
+                  <<"the dt2= "<<dt2<<" TS2= "<<data2[2][0]<<" "<<time_evt_ADC2<<endl
+                  <<"the dt3= "<<dt3<<" TS3= "<<data2[3][0]<<" "<<time_evt_ADC3<<endl
+                  <<"the dt4= "<<dt4<<" TS4= "<<data2[4][0]<<" "<<time_evt_ADC4<<endl
+                  <<"the dt5= "<<dt5<<" TS5= "<<data2[5][0]<<" "<<time_evt_ADC5<<endl
                   <<"the dt6= "<<dt6<<" TS6= "<<data2[6][0]<<" "<<time_evt_ADC6<<endl;
             }
              //display the time stamp difference
